@@ -4,37 +4,132 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>CBCN Study Quiz</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css?v=4" />
 </head>
 <body>
-  <header>
-    <h1>CBCN Study Quiz</h1>
-    <div class="sub">One question at a time • Submit = grade • Reveal = peek</div>
+  <header class="site-header">
+    <div class="brand">
+      <div class="dot"></div>
+      <h1>CBCN Study Quiz</h1>
+    </div>
+    <nav class="tabs">
+      <button data-view="quiz" class="active">Quiz</button>
+      <button data-view="bank">Question Bank</button>
+      <button data-view="history">History</button>
+      <button data-view="settings">Settings</button>
+    </nav>
   </header>
 
-  <main id="app" class="card">
-    <div id="loader">Loading questions…</div>
-    <div id="quiz" class="hidden">
-      <div id="qnum" class="muted"></div>
-      <div id="stem"></div>
-      <form id="choices"></form>
-      <div class="actions">
-        <button id="submitBtn" type="button">Submit</button>
-        <button id="revealBtn" type="button" class="ghost">Reveal</button>
-        <button id="nextBtn" type="button" class="hidden">Next</button>
+  <main class="layout">
+    <!-- Left: quiz / bank / history -->
+    <section class="maincol">
+      <!-- QUIZ VIEW -->
+      <div id="view-quiz" class="view active card">
+        <div class="qtop">
+          <div class="crumbs">
+            <span id="counter">1 / 1</span>
+            <span class="sep">•</span>
+            <span id="meta"></span>
+          </div>
+          <div class="badges" id="badges"></div>
+        </div>
+
+        <div id="stem" class="stem">Loading questions…</div>
+        <form id="choices" class="choices" aria-live="polite"></form>
+
+        <div class="actions">
+          <button id="submitBtn" type="button">Submit</button>
+          <button id="revealBtn" type="button" class="ghost">Reveal</button>
+          <button id="bookmarkBtn" type="button" class="ghost">★ Bookmark</button>
+          <button id="nextBtn" type="button" class="hidden">Next</button>
+        </div>
+
+        <div id="feedback" class="hidden feedback">
+          <div id="resultBadge" class="badge"></div>
+          <div id="rationale" class="rationale"></div>
+          <ul id="whyWrong" class="why"></ul>
+        </div>
       </div>
-      <div id="feedback" class="hidden">
-        <div id="correct" class="badge"></div>
-        <div id="rationale"></div>
-        <ul id="whyWrong" class="why"></ul>
+
+      <!-- BANK VIEW -->
+      <div id="view-bank" class="view card">
+        <h2 class="h2">Question Bank</h2>
+        <div id="bankList" class="bank-list"></div>
       </div>
-    </div>
+
+      <!-- HISTORY VIEW -->
+      <div id="view-history" class="view card">
+        <div class="row between">
+          <h2 class="h2">Answered Questions</h2>
+          <div class="row gap">
+            <button id="exportBtn" class="ghost">Export CSV</button>
+            <button id="clearHistoryBtn" class="ghost">Clear History</button>
+          </div>
+        </div>
+        <div id="historyEmpty" class="muted">No answers yet.</div>
+        <div id="historyList" class="history-list"></div>
+      </div>
+
+      <!-- SETTINGS VIEW -->
+      <div id="view-settings" class="view card">
+        <h2 class="h2">Settings</h2>
+        <label class="line">
+          <input id="optShuffle" type="checkbox" />
+          Shuffle question order
+        </label>
+        <label class="line">
+          <input id="optPersist" type="checkbox" />
+          Save session & history (local device)
+        </label>
+        <label class="line">
+          <input id="optDark" type="checkbox" />
+          Dark mode
+        </label>
+        <div class="row gap">
+          <button id="resetSessionBtn" class="ghost">Reset Session</button>
+          <button id="clearBookmarksBtn" class="ghost">Clear Bookmarks</button>
+        </div>
+        <div class="muted sm" style="margin-top:10px">
+          Data is stored only in your browser (localStorage). No cloud account needed.
+        </div>
+      </div>
+    </section>
+
+    <!-- Right: sidebar -->
+    <aside class="sidebar card">
+      <div class="stats">
+        <div><div class="n" id="statCorrect">0</div><div class="l">Correct</div></div>
+        <div><div class="n" id="statIncorrect">0</div><div class="l">Incorrect</div></div>
+        <div><div class="n" id="statStreak">0</div><div class="l">Streak</div></div>
+        <div><div class="n" id="statBank">0</div><div class="l">Bank</div></div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="filters">
+        <div class="label">Domain</div>
+        <select id="filterDomain">
+          <option value="All">All</option>
+        </select>
+
+        <div class="label">Tags</div>
+        <input id="filterTags" type="text" placeholder="e.g., HER2+, Survivorship" />
+
+        <div class="row gap">
+          <button id="reshuffleBtn" class="ghost">Reshuffle</button>
+          <button id="resetBtn" class="ghost">Reset Session</button>
+        </div>
+
+        <div class="label">Bookmarks</div>
+        <div id="bookmarkList" class="muted sm">None yet.</div>
+      </div>
+    </aside>
   </main>
 
-  <footer>
-    <span id="stats">0/0 correct</span>
+  <footer class="site-footer">
+    Made for Nicole • CBCN prep • v1.0
   </footer>
 
-  <script src="script.js"></script>
+  <script src="script.js?v=4"></script>
 </body>
 </html>
