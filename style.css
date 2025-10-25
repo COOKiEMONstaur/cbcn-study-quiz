@@ -1,18 +1,66 @@
-*{box-sizing:border-box}body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;margin:0;background:#f7f7fb;color:#111}
-header{padding:20px 16px;text-align:center}
-h1{margin:0 0 6px;font-size:22px}
-.sub{color:#666;font-size:14px}
-.card{background:#fff;max-width:800px;margin:0 auto 24px;padding:20px;border:1px solid #eee;border-radius:12px;box-shadow:0 2px 10px rgba(0,0,0,.03)}
-.hidden{display:none}
-.muted{color:#777;font-size:14px;margin-bottom:8px}
-#stem{font-size:18px;margin:8px 0 12px}
-#choices label{display:block;border:1px solid #e5e7eb;border-radius:10px;padding:10px 12px;margin:8px 0;cursor:pointer}
-#choices input{margin-right:10px}
+:root{
+  --bg:#0f1220; --card:#161a2a; --text:#eaf0ff; --muted:#9aa3b2; --accent:#5c9dff;
+  --ok:#1fd38a; --warn:#ffbd2f; --err:#ff5c6a; --border:#20263b;
+}
+:root.light{
+  --bg:#f6f7fb; --card:#ffffff; --text:#111827; --muted:#6b7280; --accent:#2563eb;
+  --ok:#10b981; --warn:#d97706; --err:#ef4444; --border:#e5e7eb;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--text)}
+a{color:var(--accent);text-decoration:none}
+.site-header{display:flex;align-items:center;justify-content:space-between;padding:14px 16px}
+.brand{display:flex;align-items:center;gap:10px}
+.brand .dot{width:10px;height:10px;border-radius:50%;background:var(--accent)}
+.brand h1{font-size:18px;margin:0}
+.tabs button{background:transparent;border:1px solid var(--border);color:var(--text);padding:8px 10px;border-radius:10px;margin-left:6px;cursor:pointer}
+.tabs button.active{background:var(--accent);border-color:var(--accent);color:#fff}
+
+.layout{display:grid;grid-template-columns:1fr 320px;gap:16px;max-width:1100px;margin:0 auto;padding:8px 16px 24px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:16px;box-shadow:0 6px 18px rgba(0,0,0,.08)}
+.view{display:none}
+.view.active{display:block}
+.h2{margin:0 0 10px}
+.row{display:flex;align-items:center}
+.between{justify-content:space-between}
+.gap{gap:8px}
+.line{display:flex;gap:8px;align-items:center;margin:8px 0}
+.divider{height:1px;background:var(--border);margin:14px 0}
+
+.qtop{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
+.crumbs{color:var(--muted);font-size:14px}
+.badges{display:flex;gap:6px;flex-wrap:wrap}
+.badges .tag{background:transparent;border:1px solid var(--border);padding:4px 8px;border-radius:999px;color:var(--muted);font-size:12px}
+
+.stem{font-size:18px;margin:12px 0}
+.choices label{display:block;border:1px solid var(--border);border-radius:12px;padding:10px 12px;margin:8px 0;cursor:pointer;background:rgba(255,255,255,.02)}
+.choices input{margin-right:10px}
+
 .actions{display:flex;gap:8px;margin-top:8px}
-button{border:none;padding:10px 14px;border-radius:10px;background:#111;color:#fff;font-weight:600;cursor:pointer}
-button.ghost{background:#e5e7eb;color:#111}
+button{border:none;background:var(--accent);color:#fff;font-weight:600;border-radius:10px;padding:10px 12px;cursor:pointer}
+button.ghost{background:transparent;color:var(--text);border:1px solid var(--border)}
 button.hidden{display:none}
-.badge{display:inline-block;padding:6px 10px;border-radius:999px;background:#eef6ff;color:#0b5; font-weight:700;margin:8px 0}
-#rationale{margin-top:6px}
-.why{margin-top:6px;color:#555}
-footer{max-width:800px;margin:0 auto 32px;color:#666;text-align:center}
+
+.feedback{margin-top:10px}
+.badge{display:inline-block;padding:6px 10px;border-radius:999px;background:rgba(255,255,255,.06)}
+.badge.ok{background:rgba(16,185,129,.15);color:var(--ok)}
+.badge.no{background:rgba(239,68,68,.15);color:var(--err)}
+.rationale{margin-top:8px}
+.why{margin-top:6px;color:var(--muted)}
+.muted{color:var(--muted)}
+.muted.sm{font-size:12px}
+
+.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.stats .n{font-size:22px;font-weight:800}
+.stats .l{color:var(--muted);font-size:12px}
+
+.bank-list .item, .history-list .item{border-top:1px solid var(--border);padding:10px 0}
+.bank-list .stem{margin:4px 0}
+.history-list .stem{margin:4px 0}
+.site-footer{max-width:1100px;margin:0 auto 28px;color:var(--muted);text-align:center}
+
+@media (max-width: 960px){
+  .layout{grid-template-columns:1fr}
+  .sidebar{order:-1}
+}
