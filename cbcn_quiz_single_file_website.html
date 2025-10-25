@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="style.css">
+  <title>CBCN Study Quiz</title>
+  <style>
+
+    :root{
+      --bg:#0f172a;/* slate-900 */
+      --panel:#111827;/* gray-900 */
+      --muted:#94a3b8;/* slate-400 */
+      --text:#e5e7eb;/* gray-200 */
+      --accent:#22d3ee;/* cyan-400 */
+      --accent-2:#a78bfa;/* violet-400 */
+      --good:#22c55e;/* green-500 */
+      --bad:#ef4444;/* red-500 */
+      --warn:#f59e0b;/* amber-500 */
+      --card:#0b1222;/* custom */
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --radius: 18px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0;background:linear-gradient(180deg,var(--bg),#020617);color:var(--text);font:16px/1.5 system-ui,Segoe UI,Roboto,Helvetica,Arial,"Apple Color Emoji","Segoe UI Emoji"}
+    .wrap{max-width:1100px;margin:0 auto;padding:24px}
+    header{display:flex;gap:16px;align-items:center;justify-content:space-between;margin-bottom:18px}
+    .logo{display:flex;gap:12px;align-items:center}
+    .logo .mark{width:42px;height:42px;border-radius:12px;background:radial-gradient(circle at 30% 30%, var(--accent), transparent 55%), radial-gradient(circle at 70% 70%, var(--accent-2), transparent 55%), #0a0f1f;box-shadow:inset 0 0 30px rgba(34,211,238,.35), 0 10px 25px rgba(0,0,0,.35)}
+    h1{margin:0;font-size:20px;letter-spacing:.3px}
+    nav{display:flex;gap:10px;flex-wrap:wrap}
+    .tab{background:#0a0f1f;color:#cbd5e1;border:1px solid #1f2937;padding:10px 14px;border-radius:12px;cursor:pointer;transition:.2s}
+    .tab.active{border-color:#334155;color:#e2e8f0;background:linear-gradient(180deg,#0b1327,#0e1730)}
+
+    .panel{background:linear-gradient(180deg, #0b1327, #0a0f1f);border:1px solid #1f2937;border-radius:var(--radius);box-shadow:var(--shadow);padding:18px}
+    .grid{display:grid;grid-template-columns:1fr;gap:16px}
+    @media (min-width:900px){.grid{grid-template-columns:2fr 1fr}}
+
+    .q-card{background:linear-gradient(180deg,#0c142a,#0b1222);border:1px solid #1f2937;border-radius:var(--radius);padding:18px;box-shadow:var(--shadow)}
+    .q-meta{display:flex;gap:8px;flex-wrap:wrap;color:var(--muted);font-size:13px;margin-bottom:8px}
+    .q-stem{font-size:18px;margin:6px 0 14px}
+    .choices{display:grid;gap:10px}
+    .choice{display:flex;gap:10px;align-items:flex-start;background:#0b1327;border:1px solid #1f2937;border-radius:14px;padding:12px;cursor:pointer;transition:.15s}
+    .choice:hover{border-color:#334155}
+    .choice input{margin-top:3px}
+    .btnrow{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+    .btn{border:1px solid #334155;background:#0b1327;color:#e2e8f0;padding:10px 14px;border-radius:12px;cursor:pointer}
+    .btn.primary{background:linear-gradient(180deg,#0ea5b7,#0891b2);border-color:#0891b2;color:white}
+    .btn.warn{background:linear-gradient(180deg,#f59e0b,#b45309);border-color:#b45309;color:#141414}
+    .btn.ghost{background:transparent}
+    .pill{display:inline-flex;align-items:center;gap:6px;border:1px solid #1f2937;background:#0b1327;border-radius:999px;padding:4px 10px}
+    .muted{color:var(--muted)}
+    .good{color:var(--good)}
+    .bad{color:var(--bad)}
+    .kpi{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+    .kpi .card{background:#0b1327;border:1px solid #1f2937;border-radius:16px;padding:14px;text-align:center}
+    .small{font-size:12px}
+    .section-title{font-weight:700;margin:8px 0 6px;font-size:14px;color:#cbd5e1}
+    textarea,input[type="text"],input[type="number"]{width:100%;background:#0b1327;border:1px solid #1f2937;border-radius:10px;color:#e5e7eb;padding:10px}
+    .table{width:100%;border-collapse:collapse}
+    .table th,.table td{border-bottom:1px solid #15213a;padding:10px;text-align:left}
+    .table th{color:#a5b4fc;font-weight:600}
+    .tag{background:#16213e;color:#93c5fd;border:1px solid #1f3a66;padding:3px 8px;border-radius:999px;font-size:12px}
+    .rationale{background:#0c172e;border:1px solid #1e293b;border-radius:12px;padding:12px;margin-top:10px}
+    .footer{margin-top:28px;color:#94a3b8;font-size:12px;text-align:center}
+    .hidden{display:none}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="logo">
+        <div class="mark" aria-hidden="true"></div>
+        <div>
+          <h1>CBCN Study Quiz</h1>
+          <div class="small muted">One question at a time • Mobile‑friendly • Your history is saved</div>
+        </div>
+      </div>
+      <nav>
+        <button class="tab active" data-tab="quiz">Quiz</button>
+        <button class="tab" data-tab="bank">Question Bank</button>
+        <button class="tab" data-tab="history">History</button>
+        <button class="tab" data-tab="refs">References</button>
+        <button class="tab" data-tab="settings">Settings</button>
+      </nav>
+    </header>
+
+    <div id="view-quiz" class="panel">
+      <div class="grid">
+        <section>
+          <div class="q-card" id="qcard">
+            <div class="q-meta">
+              <span class="pill"><strong id="qIndex">1</strong>&nbsp;/&nbsp;<span id="qTotal">—</span></span>
+              <span class="pill" id="qTags"></span>
+              <span class="pill" id="qDomain"></span>
+            </div>
+            <div class="q-stem" id="qStem">Loading your first question…</div>
+            <div class="choices" id="choices"></div>
+            <div class="btnrow">
+              <button class="btn primary" id="submitBtn">Submit</button>
+              <button class="btn" id="nextBtn" disabled>Next ▶</button>
+              <button class="btn ghost" id="revealBtn">Reveal</button>
+              <button class="btn ghost" id="bookmarkBtn">☆ Bookmark</button>
+            </div>
+            <div id="feedback" class="rationale hidden"></div>
+          </div>
+        </section>
+        <aside>
+          <div class="section-title">Session</div>
+          <div class="kpi">
+            <div class="card"><div class="small muted">Correct</div><div id="statCorrect" style="font-size:22px;font-weight:700">0</div></div>
+            <div class="card"><div class="small muted">Incorrect</div><div id="statIncorrect" style="font-size:22px;font-weight:700">0</div></div>
+            <div class="card"><div class="small muted">Streak</div><div id="statStreak" style="font-size:22px;font-weight:700">0</div></div>
+            <div class="card"><div class="small muted">Bank</div><div id="statBank" style="font-size:22px;font-weight:700">—</div></div>
+          </div>
+          <div style="height:10px"></div>
+          <div class="section-title">Filters</div>
+          <label class="small muted">Domain</label>
+          <select id="filterDomain" style="width:100%;background:#0b1327;border:1px solid #1f2937;border-radius:10px;color:#e5e7eb;padding:10px">
+            <option value="">All</option>
+          </select>
+          <div style="height:10px"></div>
+          <label class="small muted">Tags</label>
+          <input id="filterTags" type="text" placeholder="e.g. HR+/HER2-, Survivorship" />
+          <div style="height:10px"></div>
+          <button class="btn" id="reshuffleBtn">Reshuffle</button>
+          <button class="btn warn" id="resetSessionBtn">Reset Session</button>
+        </aside>
+      </div>
+    </div>
+
+    <div id="view-bank" class="panel hidden">
+      <div class="section-title">Manage Question Bank</div>
+      <p class="muted small">Import a JSON file, paste JSON, or add questions inline. Your bank is saved locally in this browser. You can export anytime.</p>
+      <div class="btnrow">
+        <input type="file" id="fileInput" accept=".json" />
+        <button class="btn" id="exportBtn">Export JSON</button>
+        <button class="btn" id="exportCSVBtn">Export CSV of Attempts</button>
+      </div>
+      <div style="height:12px"></div>
+      <textarea id="jsonArea" rows="10" placeholder='[{"id":"ex1","stem":"…","choices":["A","B"],"answerIndex":0,"rationale":"…","tags":["HR+/HER2-"],"domain":"Care Continuum","reference":"NCCN v1.2025"}]'></textarea>
+      <div class="btnrow">
+        <button class="btn primary" id="replaceBankBtn">Replace Bank with JSON</button>
+        <button class="btn" id="appendBankBtn">Append to Bank</button>
+        <button class="btn" id="loadSampleBtn">Load Sample CBCN Set</button>
+      </div>
+      <div style="height:18px"></div>
+      <table class="table" id="bankTable"></table>
+    </div>
+
+    <div id="view-history" class="panel hidden">
+      <div class="section-title">Attempt History</div>
+      <p class="muted small">Every attempt is logged with timestamp, your answer, correctness, rationale, and reference.</p>
+      <input id="searchHistory" type="text" placeholder="Search by keyword, tag, or reference" />
+      <div style="height:10px"></div>
+      <table class="table" id="historyTable"></table>
+    </div>
+
+    <div id="view-refs" class="panel hidden">
+      <div class="section-title">References (editable)</div>
+      <textarea id="refsArea" rows="8" placeholder="Add key references here (NCCN, ASCO, UpToDate, trials)"></textarea>
+      <div class="btnrow">
+        <button class="btn primary" id="saveRefsBtn">Save</button>
+      </div>
+      <div style="height:12px"></div>
+      <div id="refsPreview" class="rationale"></div>
+    </div>
+
+    <div id="view-settings" class="panel hidden">
+      <div class="section-title">Settings</div>
+      <label><input type="checkbox" id="optAutoNext"/> Auto‑advance after correct answer</label><br/>
+      <label><input type="checkbox" id="optShuffle" checked/> Shuffle choices</label><br/>
+      <label><input type="checkbox" id="optAvoidRecent" checked/> Avoid repeating last 10 questions</label><br/>
+      <label><input type="checkbox" id="optRequireSubmit" checked/> Require clicking “Submit”</label><br/>
+      <label><input type="checkbox" id="optShowRationale" checked/> Auto‑show rationale after submit</label><br/>
+      <div style="height:10px"></div>
+      <button class="btn warn" id="wipeAllBtn">Wipe ALL local data</button>
+      <p class="small muted">This app stores your question bank and history in your browser (localStorage). You can export/import to move between devices. If you prefer cloud sync later, we can wire this to a simple backend (e.g., Supabase) with login.</p>
+    </div>
+
+    <div class="footer">Made for Nicole · CBCN prep · v1.0 — Single‑file site</div>
+  </div>
+
+  <script>
+  /********************
+    Lightweight data layer
+  ********************/
+  const store = {
+    get(key, fallback){
+      try{ const v = localStorage.getItem(key); return v? JSON.parse(v) : fallback; }catch(e){ return fallback; }
+    },
+    set(key, value){ localStorage.setItem(key, JSON.stringify(value)); }
+  };
+
+  // Keys
+  const K = {
+    BANK:'cbcn.bank.v1',
+    ATTEMPTS:'cbcn.attempts.v1',
+    REFS:'cbcn.refs.v1',
+    SETTINGS:'cbcn.settings.v1',
+    RECENT:'cbcn.recent.v1'
+  };
+
+  // In‑memory session
+  let session = {
+    queue: [], idx: 0, current: null, selected: null,
+    correct:0, incorrect:0, streak:0,
+  };
+
+  // UI helpers
+  const $ = sel => document.querySelector(sel);
+  const $$ = sel => Array.from(document.querySelectorAll(sel));
+  function setHidden(el, yes){ el.classList.toggle('hidden', !!yes); }
+
+  // Tabs
+  $$('.tab').forEach(btn=>btn.addEventListener('click',()=>{
+    $$('.tab').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    const v = btn.dataset.tab;
+    ['quiz','bank','history','refs','settings'].forEach(id=>{
+      setHidden($('#view-'+id), id!==v);
+    })
+    if(v==='bank') renderBank();
+    if(v==='history') renderHistory();
+    if(v==='refs') renderRefs();
+  }))
+
+  // Defaults
+  const defaultSettings = {autoNext:false, shuffle:true, avoidRecent:true, requireSubmit:true, showRationale:true};
+  const settings = Object.assign({}, defaultSettings, store.get(K.SETTINGS, {}));
+  function bindSettings(){
+    $('#optAutoNext').checked = settings.autoNext;
+    $('#optShuffle').checked = settings.shuffle;
+    $('#optAvoidRecent').checked = settings.avoidRecent;
+    $('#optRequireSubmit').checked = settings.requireSubmit;
+    $('#optShowRationale').checked = settings.showRationale;
+  }
+  bindSettings();
+  $('#optAutoNext').onchange = e=>saveSetting('autoNext', e.target.checked);
+  $('#optShuffle').onchange = e=>saveSetting('shuffle', e.target.checked);
+  $('#optAvoidRecent').onchange = e=>saveSetting('avoidRecent', e.target.checked);
+  $('#optRequireSubmit').onchange = e=>saveSetting('requireSubmit', e.target.checked);
+  $('#optShowRationale').onchange = e=>saveSetting('showRationale', e.target.checked);
+  function saveSetting(k,v){ settings[k]=v; store.set(K.SETTINGS, settings); }
+
+  // Sample questions (you can replace)
+  const SAMPLE = [
+    {
+      id:'HRpos1',
+      stem:'In a postmenopausal patient with stage II, HR+/HER2‑negative breast cancer and an Oncotype DX RS of 14, which adjuvant systemic therapy strategy is most appropriate?',
+      choices:[
+        'Adjuvant chemotherapy followed by endocrine therapy',
+        'Endocrine therapy alone (AI), consider extended duration based on risk',
+        'No adjuvant therapy is needed if margins are negative',
+        'Trastuzumab for one year followed by tamoxifen'
+      ],
+      answerIndex:1,
+      rationale:'TAILORx supports sparing chemotherapy for HR+/HER2–, node‑negative patients with RS ≤25 (particularly >50 years). Postmenopausal patients generally receive an aromatase inhibitor as adjuvant ET; consider extending to 7–10 years in higher‑risk cases.',
+      tags:['HR+/HER2‑','Adjuvant','Oncotype'],
+      domain:'Care Continuum',
+      reference:'NCCN v1.2025; TAILORx'
+    },
+    {
+      id:'HER2resid',
+      stem:'A patient with HER2‑positive disease has residual invasive cancer after neoadjuvant THP. What is the preferred adjuvant strategy?',
+      choices:[
+        'Complete trastuzumab to 1 year',
+        'Ado‑trastuzumab emtansine (T‑DM1) for 14 cycles',
+        'Switch to neratinib for 1 year',
+        'Observation only'
+      ],
+      answerIndex:1,
+      rationale:'KATHERINE showed superior iDFS with T‑DM1 vs trastuzumab in patients with residual disease after neoadjuvant therapy. Standard is T‑DM1 x 14 cycles.',
+      tags:['HER2+','Adjuvant'],
+      domain:'Treatment',
+      reference:'KATHERINE; NCCN v1.2025'
+    },
+    {
+      id:'TNBCpembro',
+      stem:'Which is an NCCN Category 1 preferred preoperative regimen for stage II TNBC?',
+      choices:[
+        'Dose‑dense AC→T alone',
+        'Pembrolizumab + carboplatin + paclitaxel → pembrolizumab + AC, then adjuvant pembrolizumab',
+        'Capecitabine monotherapy preoperatively',
+        'Docetaxel + cyclophosphamide + trastuzumab'
+      ],
+      answerIndex:1,
+      rationale:'For stage II–III TNBC, pembrolizumab with taxane/platinum followed by pembrolizumab + anthracycline/alkylator, then adjuvant pembrolizumab is Category 1 preferred.',
+      tags:['TNBC','Neoadjuvant','Immunotherapy'],
+      domain:'Treatment',
+      reference:'NCCN v1.2025; KEYNOTE‑522 schema'
+    },
+    {
+      id:'OFS',
+      stem:'Which patient derives the clearest benefit from adding ovarian function suppression (OFS) to endocrine therapy?',
+      choices:[
+        'Low‑risk, node‑negative, grade 1 tumor',
+        'Premenopausal, higher‑risk disease who would have been offered chemotherapy',
+        'Postmenopausal with osteoporosis on AI',
+        'Any patient with ER‑low (1–10%) regardless of risk'
+      ],
+      answerIndex:1,
+      rationale:'SOFT/TEXT: OFS (with tamoxifen or AI) improves outcomes in premenopausal patients at higher risk of recurrence (e.g., chemo‑eligible).',
+      tags:['Endocrine','Premenopausal'],
+      domain:'Treatment',
+      reference:'SOFT/TEXT; ASCO guidance'
+    }
+  ];
+
+  // Init bank if empty
+  if(!store.get(K.BANK)) store.set(K.BANK, SAMPLE);
+
+  // Build quiz queue respecting filters
+  function buildQueue(){
+    const bank = store.get(K.BANK, []);
+    const d = $('#filterDomain').value.trim();
+    const tags = $('#filterTags').value.split(',').map(s=>s.trim().toLowerCase()).filter(Boolean);
+    let arr = bank.filter(q=> (d? q.domain===d : true) && (tags.length? (q.tags||[]).some(t=>tags.includes(String(t).toLowerCase())) : true));
+    if(settings.avoidRecent){
+      const recent = store.get(K.RECENT, []);
+      arr = arr.filter(q=> !recent.includes(q.id));
+    }
+    // shuffle
+    for(let i=arr.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [arr[i],arr[j]]=[arr[j],arr[i]] }
+    session.queue = arr;
+    session.idx = 0;
+    $('#qTotal').textContent = arr.length||'—';
+    $('#statBank').textContent = bank.length;
+  }
+
+  function loadDomains(){
+    const bank = store.get(K.BANK, []);
+    const domains = [...new Set(bank.map(q=>q.domain).filter(Boolean))];
+    const sel = $('#filterDomain');
+    sel.innerHTML = '<option value="">All</option>' + domains.map(d=>`<option>${d}</option>`).join('');
+  }
+
+  function nextQuestion(){
+    const bank = store.get(K.BANK, []);
+    if(session.idx >= session.queue.length){ buildQueue(); }
+    session.current = session.queue[session.idx] || bank[Math.floor(Math.random()*bank.length)];
+    session.idx++;
+    renderQuestion();
+  }
+
+  function renderQuestion(){
+    const q = session.current; if(!q){ $('#qStem').textContent='No questions match the filters.'; return; }
+    $('#qIndex').textContent = session.idx;
+    $('#qStem').textContent = q.stem;
+    $('#qTags').innerHTML = (q.tags||[]).map(t=>`<span class="tag">${t}</span>`).join(' ');
+    $('#qDomain').innerHTML = q.domain? `<span class="pill">${q.domain}</span>` : '';
+    const choices = [...q.choices];
+    const idxMap = choices.map((_,i)=>i);
+    if(settings.shuffle){ // Fisher-Yates across choices & map
+      for(let i=choices.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [choices[i],choices[j]]=[choices[j],choices[i]]; [idxMap[i],idxMap[j]]=[idxMap[j],idxMap[i]]; }
+    }
+    const ctn = $('#choices');
+    ctn.innerHTML = choices.map((txt,i)=>{
+      return `<label class="choice"><input type="radio" name="ans" value="${idxMap[i]}"><div>${txt}</div></label>`
+    }).join('');
+    session.selected = null;
+    setHidden($('#feedback'), true);
+    $('#submitBtn').disabled = false;
+    $('#nextBtn').disabled = true;
+    // select handler
+    $$('#choices input[name="ans"]').forEach(inp=>inp.onchange = ()=>{ session.selected = Number(inp.value); if(!settings.requireSubmit) grade(); });
+  }
+
+  function grade(revealed=false){
+    const q = session.current; if(!q) return;
+    const selected = session.selected;
+    const correct = selected===q.answerIndex;
+    const msg = selected==null? '<span class="bad">No answer selected.</span>'
+      : correct? `<strong class="good">Correct.</strong>`
+      : `<strong class="bad">Incorrect.</strong> Correct answer: <em>${q.choices[q.answerIndex]}</em>`;
+
+    const rationale = q.rationale? `<div class="section-title">Rationale</div>${q.rationale}` : '';
+    const ref = q.reference? `<div class="section-title">Reference</div><span class="muted small">${q.reference}</span>`:'';
+    $('#feedback').innerHTML = `${msg}${rationale?'<div style="height:6px"></div>':''}<div class="rationale">${rationale||''}${ref?'<div style="height:8px"></div>'+ref:''}</div>`;
+    setHidden($('#feedback'), false);
+
+    // update stats & log once per question
+    $('#submitBtn').disabled = true;
+    $('#nextBtn').disabled = false;
+
+    const attempt = {
+      id: q.id, stem:q.stem, choices:q.choices, answerIndex:q.answerIndex,
+      selectedIndex: selected, correct, tags:q.tags||[], domain:q.domain||'',
+      reference:q.reference||'', ts: new Date().toISOString()
+    };
+    const attempts = store.get(K.ATTEMPTS, []);
+    attempts.push(attempt); store.set(K.ATTEMPTS, attempts);
+
+    // stats
+    if(selected==null){ /* no stat change */ }
+    else if(correct){ session.correct++; session.streak++; }
+    else { session.incorrect++; session.streak = 0; }
+    $('#statCorrect').textContent = session.correct;
+    $('#statIncorrect').textContent = session.incorrect;
+    $('#statStreak').textContent = session.streak;
+
+    // recent ring buffer of last 10
+    const recent = store.get(K.RECENT, []);
+    recent.push(q.id); while(recent.length>10) recent.shift(); store.set(K.RECENT, recent);
+
+    if(settings.autoNext && correct){ setTimeout(()=>nextQuestion(), 600); }
+  }
+
+  // Controls
+  $('#submitBtn').onclick = ()=> grade();
+  $('#revealBtn').onclick = ()=> { session.selected = session.current?.answerIndex ?? null; grade(true); };
+  $('#nextBtn').onclick = ()=> nextQuestion();
+  $('#reshuffleBtn').onclick = ()=> { buildQueue(); nextQuestion(); };
+  $('#resetSessionBtn').onclick = ()=> { session.correct=session.incorrect=session.streak=0; ['statCorrect','statIncorrect','statStreak'].forEach(id=>$('#'+id).textContent='0'); buildQueue(); nextQuestion(); };
+  $('#bookmarkBtn').onclick = ()=>{
+    const q = session.current; if(!q) return;
+    q.tags = Array.from(new Set([...(q.tags||[]), '★ Bookmark']));
+    const bank = store.get(K.BANK, []);
+    const idx = bank.findIndex(x=>x.id===q.id); if(idx>-1){ bank[idx]=q; store.set(K.BANK, bank); renderBank(); }
+  };
+
+  // Bank management
+  function renderBank(){
+    const bank = store.get(K.BANK, []);
+    $('#bankTable').innerHTML = `
+      <thead><tr><th>ID</th><th>Stem</th><th>Answer</th><th>Domain</th><th>Tags</th></tr></thead>
+      <tbody>
+        ${bank.map(q=>`<tr><td class="small muted">${q.id}</td><td>${escapeHtml(q.stem)}</td><td class="small">${escapeHtml(q.choices[q.answerIndex])}</td><td class="small muted">${q.domain||''}</td><td>${(q.tags||[]).map(t=>`<span class="tag">${escapeHtml(t)}</span>`).join(' ')}</td></tr>`).join('')}
+      </tbody>`;
+    loadDomains();
+  }
+
+  $('#replaceBankBtn').onclick = ()=>{
+    try{ const data = JSON.parse($('#jsonArea').value); if(!Array.isArray(data)) throw new Error('JSON must be an array'); store.set(K.BANK, data); buildQueue(); renderBank(); nextQuestion(); alert('Question bank replaced.'); }catch(e){ alert('Invalid JSON: '+e.message); }
+  };
+  $('#appendBankBtn').onclick = ()=>{
+    try{ const data = JSON.parse($('#jsonArea').value); if(!Array.isArray(data)) throw new Error('JSON must be an array'); const bank=store.get(K.BANK,[]); const merged=[...bank]; data.forEach(q=>{ const i=merged.findIndex(x=>x.id===q.id); if(i>-1) merged[i]=q; else merged.push(q); }); store.set(K.BANK, merged); buildQueue(); renderBank(); nextQuestion(); alert('Questions appended/updated.'); }catch(e){ alert('Invalid JSON: '+e.message); }
+  };
+  $('#loadSampleBtn').onclick = ()=>{ $('#jsonArea').value = JSON.stringify(SAMPLE, null, 2); };
+  $('#exportBtn').onclick = ()=>{ const data = JSON.stringify(store.get(K.BANK,[]), null, 2); downloadFile('cbcn-question-bank.json', data, 'application/json'); };
+  $('#exportCSVBtn').onclick = ()=>{ const csv = attemptsToCSV(store.get(K.ATTEMPTS, [])); downloadFile('cbcn-attempts.csv', csv, 'text/csv'); };
+  $('#fileInput').onchange = (e)=>{
+    const f = e.target.files[0]; if(!f) return; const reader = new FileReader(); reader.onload = ()=>{ $('#jsonArea').value = reader.result; }; reader.readAsText(f);
+  };
+
+  // History
+  function renderHistory(){
+    const q = $('#searchHistory').value.trim().toLowerCase();
+    const rows = store.get(K.ATTEMPTS, []).filter(a=>{
+      if(!q) return true; const hay = [a.stem,(a.tags||[]).join(' '),a.reference,a.domain,(a.choices||[]).join(' ')].join(' ').toLowerCase(); return hay.includes(q);
+    }).slice().reverse().map(a=>{
+      const your = a.selectedIndex==null? '—' : a.choices[a.selectedIndex];
+      const corr = a.choices[a.answerIndex];
+      return `<tr>
+        <td class="small muted">${new Date(a.ts).toLocaleString()}</td>
+        <td>${escapeHtml(a.stem)}</td>
+        <td class="${a.correct?'good':'bad'}">${a.correct?'✔':'✖'}</td>
+        <td>${escapeHtml(your||'')}</td>
+        <td>${escapeHtml(corr||'')}</td>
+        <td>${(a.tags||[]).map(t=>`<span class="tag">${escapeHtml(t)}</span>`).join(' ')}</td>
+        <td class="small muted">${escapeHtml(a.reference||'')}</td>
+      </tr>`;
+    }).join('');
+    $('#historyTable').innerHTML = `<thead><tr><th>When</th><th>Question</th><th>✓</th><th>Your Answer</th><th>Correct</th><th>Tags</th><th>Reference</th></tr></thead><tbody>${rows||''}</tbody>`;
+  }
+  $('#searchHistory').oninput = renderHistory;
+
+  // References
+  function renderRefs(){
+    const txt = store.get(K.REFS, '').trim();
+    $('#refsArea').value = txt;
+    $('#refsPreview').innerHTML = txt? formatRefs(txt) : '<span class="muted">No references saved yet.</span>';
+  }
+  $('#saveRefsBtn').onclick = ()=>{ const v = $('#refsArea').value; store.set(K.REFS, v); renderRefs(); };
+  function formatRefs(txt){
+    return txt.split(/\n+/).map(line=>`• ${escapeHtml(line)}`).join('<br/>');
+  }
+
+  // Wipe
+  $('#wipeAllBtn').onclick = ()=>{
+    if(confirm('This will erase your question bank, attempts, and references stored in this browser. Continue?')){
+      [K.BANK,K.ATTEMPTS,K.REFS,K.SETTINGS,K.RECENT].forEach(k=>localStorage.removeItem(k));
+      location.reload();
+    }
+  };
+
+  // Utilities
+  function escapeHtml(s){ return String(s).replace(/[&<>\"]/g, c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[c])); }
+  function downloadFile(name, content, type){ const a=document.createElement('a'); a.href=URL.createObjectURL(new Blob([content],{type})); a.download=name; a.click(); URL.revokeObjectURL(a.href); }
+  function attemptsToCSV(arr){
+    const header = ['ts','id','stem','your_answer','correct_answer','correct','tags','domain','reference'];
+    const rows = arr.map(a=>[
+      a.ts,
+      safe(a.id),
+      safe(a.stem),
+      safe(a.selectedIndex==null?'':a.choices[a.selectedIndex]),
+      safe(a.choices[a.answerIndex]),
+      a.correct?'TRUE':'FALSE',
+      safe((a.tags||[]).join('; ')),
+      safe(a.domain||''),
+      safe(a.reference||'')
+    ]);
+    function safe(x){ return String(x).replaceAll('"','""'); }
+    return header.join(',')+'\n'+rows.map(r=>'"'+r.join('\",\"')+'"').join('\n');
+  }
+
+  // Start
+  loadDomains();
+  buildQueue();
+  nextQuestion();
+  renderBank();
+  renderRefs();
+  renderHistory();
+  </script>
+</body>
+</html>
