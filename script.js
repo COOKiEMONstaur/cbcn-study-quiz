@@ -91,11 +91,12 @@ function submit(){
 function reveal(){
   const q = state.questions[state.order[state.idx]];
   el("feedback").classList.remove("hidden");
-  el("correct").textContent = `Answer: ${String.fromCharCode(65+q.answerIndex)}`;
+  el("correct").textContent = `Answer: ${String.fromCharCode(65 + q.answerIndex)}`;
   el("rationale").textContent = q.rationale || "—";
+
   const ul = el("whyWrong");
   ul.innerHTML = "";
-  if(q.wwrongAnswerNotes) {
+  if (q.wrongAnswerNotes) {
     Object.entries(q.wrongAnswerNotes).forEach(([opt, note]) => {
       const li = document.createElement("li");
       li.textContent = `${opt}: ${note}`;
@@ -103,6 +104,7 @@ function reveal(){
     });
   }
 }
+
 
 function nextQ(){
   if(state.idx < state.questions.length - 1){
@@ -123,3 +125,4 @@ el("revealBtn").addEventListener("click", reveal);
 el("nextBtn").addEventListener("click", nextQ);
 
 init();
+
