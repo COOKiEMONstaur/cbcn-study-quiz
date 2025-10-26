@@ -1,0 +1,25 @@
+[
+  {
+    "id": "SRC001",
+    "stem": "A 39-year-old BRCA2-positive woman undergoes prophylactic bilateral mastectomy with reconstruction. Pathology reveals an incidental 3 mm invasive ductal carcinoma, ER+, PR+, HER2\u2013, no lymphovascular invasion. What is the most appropriate management?",
+    "choices": [
+      "Adjuvant chemotherapy",
+      "Postmastectomy radiation therapy",
+      "Endocrine therapy alone",
+      "Observation only"
+    ],
+    "answerIndex": 2,
+    "rationale": "Tumor <5 mm, ER+/PR+, HER2\u2013, no high-risk features \u2192 low-risk profile. Endocrine therapy provides systemic benefit without need for chemo or radiation.",
+    "wrongAnswerNotes": {
+      "Adjuvant chemotherapy": "Overtreatment.",
+      "Postmastectomy radiation therapy": "Not indicated with clear margins and negative nodes.",
+      "Observation only": "No adjuvant therapy reduces recurrence risk."
+    },
+    "domain": "Treatment Modalities",
+    "tags": [
+      "ER+",
+      "Small invasive cancer",
+      "Risk stratification"
+    ]
+  }
+]
