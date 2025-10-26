@@ -1,5 +1,5 @@
 // ---- CONFIG ----
-const BANK_URL = "advanced_cbcn_questions.json?v=3";
+const BANK_URL = "cbcn_bank_setA.json?v=1";
 const STORAGE = {
   settings: "cbcn_settings_v1",
   history:  "cbcn_history_v1",
@@ -331,6 +331,7 @@ function persistSettings(){ save(STORAGE.settings, state.settings); }
 
 // ---- HELPERS ----
 function debounce(fn, ms){ let t; return (...a)=>{ clearTimeout(t); t=setTimeout(()=>fn(...a),ms); }; }
+
 
 
 
