@@ -64,3 +64,10 @@ button.hidden{display:none}
   .layout{grid-template-columns:1fr}
   .sidebar{order:-1}
 }
+
+.pack-controls {
+  background: #f6f6f6;
+  padding: .5rem .75rem;
+  border-radius: .5rem;
+  margin-bottom: .75rem;
+}
