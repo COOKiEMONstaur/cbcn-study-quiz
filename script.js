@@ -1,21 +1,34 @@
-// ---- CONFIG ----
-const BANK_URL = "cbcn_bank_setA.json?v=1";
+// =======================
+// CBCN QUIZ — MULTI-PACK
+// =======================
+
+// ---- MULTI-PACK CONFIG ----
+const PACKS = {
+  setA:         { file: "cbcn_bank_setA.json",        label: "Set A" },
+  level2:       { file: "cbcn_master_level2.json",    label: "Level 2 (Hard)" },
+  survivorship: { file: "cbcn_survivorship.json",     label: "Survivorship" },
+  // add more packs here as you create them:
+  // diagnosis: { file: "cbcn_diagnosis.json", label: "Diagnosis & Staging" },
+};
+const LS_ACTIVE = "cbcn_activePacks_v1"; // stores selected pack ids
+
+// ---- STORAGE KEYS ----
 const STORAGE = {
-  settings: "cbcn_settings_v1",
-  history:  "cbcn_history_v1",
-  session:  "cbcn_session_v1",
-  bookmarks:"cbcn_bookmarks_v1"
+  settings:  "cbcn_settings_v1",
+  history:   "cbcn_history_v1",
+  session:   "cbcn_session_v1",
+  bookmarks: "cbcn_bookmarks_v1"
 };
 
 // ---- STATE ----
 const state = {
-  all: [],
-  order: [],
-  idx: 0,
+  all: [],          // all questions currently active (combined from selected packs)
+  order: [],        // index order into state.filtered
+  idx: 0,           // current index in order[]
   correct: 0,
   incorrect: 0,
   streak: 0,
-  filtered: [],
+  filtered: [],     // after domain/tags filters
   settings: { shuffle:true, persist:true, dark:true },
   history: [],
   bookmarks: []
@@ -26,6 +39,87 @@ const $ = (id) => document.getElementById(id);
 function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
 function save(k,v){localStorage.setItem(k, JSON.stringify(v))}
 function load(k, fallback){ try{ return JSON.parse(localStorage.getItem(k)) ?? fallback } catch { return fallback } }
+function debounce(fn, ms){ let t; return (...a)=>{ clearTimeout(t); t=setTimeout(()=>fn(...a),ms); }; }
+
+// ---- PACK SELECTION (all ON by default) ----
+function defaultActivePacks(){ return Object.keys(PACKS); }
+function loadActivePacks(){
+  try {
+    const v = JSON.parse(localStorage.getItem(LS_ACTIVE));
+    const valid = Array.isArray(v) ? v.filter(id => PACKS[id]) : [];
+    return valid.length ? valid : defaultActivePacks();
+  } catch { return defaultActivePacks(); }
+}
+function saveActivePacks(ids){ localStorage.setItem(LS_ACTIVE, JSON.stringify(ids)); }
+
+// cache of loaded question arrays per pack
+const PACK_DATA = new Map(); // id -> array
+
+async function fetchPack(id){
+  const meta = PACKS[id];
+  if(!meta) throw new Error(`Unknown pack: ${id}`);
+  const res = await fetch(`${meta.file}?v=${Date.now()}`, { cache:"no-store" });
+  if(!res.ok) throw new Error(`Failed to load ${meta.file}`);
+  const data = await res.json();
+  PACK_DATA.set(id, Array.isArray(data) ? data : []);
+}
+
+async function loadAllPacks(){
+  const ids = Object.keys(PACKS);
+  await Promise.all(ids.map(id => fetchPack(id).catch(e => {
+    console.error("Pack failed", id, e);
+    PACK_DATA.set(id, []);
+  })));
+}
+
+function assembleFrom(ids){
+  const out = [];
+  ids.forEach(id => {
+    const arr = PACK_DATA.get(id);
+    if(Array.isArray(arr)) out.push(...arr);
+  });
+  return out;
+}
+
+// ---- PACK CONTROLS UI ----
+// Place <div id="packControls"></div> in your HTML where you want this to render.
+function renderPackControls(active){
+  const el = $("packControls"); if(!el) return;
+  el.innerHTML = `
+    <div style="display:flex;gap:1rem;flex-wrap:wrap;align-items:center;">
+      <strong>Packs:</strong>
+      ${Object.entries(PACKS).map(([id,meta])=>`
+        <label style="display:inline-flex;gap:.4rem;align-items:center;cursor:pointer;">
+          <input type="checkbox" data-pack="${id}" ${active.includes(id)?"checked":""}/>
+          <span>${meta.label}</span>
+        </label>
+      `).join("")}
+      <button id="applyPacksBtn" type="button">Apply</button>
+      <span id="packSummary" class="sm" style="opacity:.8"></span>
+    </div>
+  `;
+  $("applyPacksBtn").addEventListener("click", onApplyPacks);
+  updatePackSummary(active);
+}
+
+function getCheckedPackIds(){
+  return Array.from(document.querySelectorAll('#packControls input[type="checkbox"][data-pack]'))
+    .filter(cb => cb.checked)
+    .map(cb => cb.getAttribute("data-pack"));
+}
+
+function onApplyPacks(){
+  const ids = getCheckedPackIds();
+  if(!ids.length){ alert("Select at least one pack."); return; }
+  saveActivePacks(ids);
+  rebuildFromActive();
+}
+
+function updatePackSummary(active){
+  const el = $("packSummary"); if(!el) return;
+  const total = assembleFrom(active).length;
+  el.textContent = `Active: ${active.join(", ")} • ${total} questions`;
+}
 
 // ---- INIT ----
 init();
@@ -36,7 +130,7 @@ async function init(){
   state.bookmarks= load(STORAGE.bookmarks,[]);
   if(state.settings.dark) document.documentElement.classList.remove("light"); else document.documentElement.classList.add("light");
 
-  // Wire nav tabs
+  // Wire nav tabs (unchanged)
   document.querySelectorAll(".tabs button").forEach(b=>{
     b.addEventListener("click", ()=>{
       document.querySelectorAll(".tabs button").forEach(x=>x.classList.remove("active"));
@@ -50,13 +144,19 @@ async function init(){
     });
   });
 
-  // Load bank
-  const res = await fetch(BANK_URL, {cache:"no-store"});
-  const data = await res.json();
-  state.all = data;
-  state.filtered = data.slice();
+  // Load ALL packs once
+  await loadAllPacks();
+
+  // Build controls + assemble active pool (all packs ON by default or per saved selection)
+  const active = loadActivePacks();
+  renderPackControls(active);
+
+  // Build the working bank from selected packs
+  state.all = assembleFrom(active);
+  state.filtered = state.all.slice();
 
   // Build domain filter
+  $("filterDomain").innerHTML = `<option>All</option>`;
   const domains = Array.from(new Set(state.all.map(q=>q.domain).filter(Boolean))).sort();
   domains.forEach(d=>{
     const opt = document.createElement("option");
@@ -67,7 +167,7 @@ async function init(){
   state.order = [...Array(state.filtered.length).keys()];
   if(state.settings.shuffle) shuffle(state.order);
 
-  // Events
+  // Events (unchanged)
   $("submitBtn").addEventListener("click", onSubmit);
   $("revealBtn").addEventListener("click", onReveal);
   $("nextBtn").addEventListener("click", nextQ);
@@ -94,6 +194,35 @@ async function init(){
   renderBookmarks();
 }
 
+// ---- REBUILD WHEN PACK SELECTION CHANGES ----
+function rebuildFromActive(){
+  const active = loadActivePacks();
+
+  // Rebuild state from selected packs
+  state.all = assembleFrom(active);
+  state.filtered = state.all.slice();
+
+  // refresh domain dropdown
+  if ($("filterDomain")) {
+    $("filterDomain").innerHTML = `<option>All</option>`;
+    const domains = Array.from(new Set(state.all.map(q=>q.domain).filter(Boolean))).sort();
+    domains.forEach(d=>{
+      const opt = document.createElement("option");
+      opt.value = d; opt.textContent = d; $("filterDomain").appendChild(opt);
+    });
+  }
+
+  // reset order/index (stats counters persist; session reset button still available)
+  state.order = [...Array(state.filtered.length).keys()];
+  if(state.settings.shuffle) shuffle(state.order);
+  state.idx = 0;
+
+  updatePackSummary(active);
+  updateStats();
+  renderQ();
+  renderBank();
+}
+
 // ---- RENDER QUESTION ----
 function renderQ(){
   const q = getCurrent();
@@ -107,11 +236,13 @@ function renderQ(){
   $("meta").textContent = [q.domain, tags].filter(Boolean).join(" — ");
 
   // topic badges
-  const badges = $("badges"); badges.innerHTML = "";
-  (q.tags||[]).slice(0,4).forEach(t=>{
-    const span = document.createElement("span");
-    span.className="tag"; span.textContent = t; badges.appendChild(span);
-  });
+  const badges = $("badges"); if (badges) {
+    badges.innerHTML = "";
+    (q.tags||[]).slice(0,4).forEach(t=>{
+      const span = document.createElement("span");
+      span.className="tag"; span.textContent = t; badges.appendChild(span);
+    });
+  }
 
   const choices = $("choices");
   choices.innerHTML = "";
@@ -328,10 +459,3 @@ function hydrateSettings(){
   $("optDark").checked    = !!state.settings.dark;
 }
 function persistSettings(){ save(STORAGE.settings, state.settings); }
-
-// ---- HELPERS ----
-function debounce(fn, ms){ let t; return (...a)=>{ clearTimeout(t); t=setTimeout(()=>fn(...a),ms); }; }
-
-
-
-
