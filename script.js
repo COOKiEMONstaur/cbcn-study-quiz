@@ -4,9 +4,8 @@
 
 // ---- MULTI-PACK CONFIG ----
 const PACKS = {
-  setA:         { file: "cbcn_bank_setA.json",        label: "Set A" },
-  level2:       { file: "cbcn_master_level2.json",    label: "Level 2 (Hard)" },
-  survivorship: { file: "cbcn_survivorship.json",     label: "Survivorship" },
+  24oct2025:         { file: "advanced_cbcn_questions.json",        label: "24oct2025" },
+  27oct2025:       { file: "cbcn_27oct2025.json",    label: "27oct2025" },
   // add more packs here as you create them:
   // diagnosis: { file: "cbcn_diagnosis.json", label: "Diagnosis & Staging" },
 };
@@ -459,3 +458,4 @@ function hydrateSettings(){
   $("optDark").checked    = !!state.settings.dark;
 }
 function persistSettings(){ save(STORAGE.settings, state.settings); }
+
