@@ -1,7 +1,7 @@
 [
   {
     "id": "SRC001",
-    "stem": "A 39-year-old BRCA2-positive woman undergoes prophylactic bilateral mastectomy with reconstruction. Pathology reveals an incidental 3 mm invasive ductal carcinoma, ER+, PR+, HER2\u2013, no lymphovascular invasion. What is the most appropriate management?",
+    "stem": "A 46-year-old BRCA2-positive woman undergoes prophylactic bilateral mastectomy with reconstruction. Pathology reveals an incidental 3 mm invasive ductal carcinoma, ER+, PR+, HER2–, no lymphovascular invasion. What is the most appropriate management?",
     "choices": [
       "Adjuvant chemotherapy",
       "Postmastectomy radiation therapy",
@@ -9,7 +9,7 @@
       "Observation only"
     ],
     "answerIndex": 2,
-    "rationale": "Tumor <5 mm, ER+/PR+, HER2\u2013, no high-risk features \u2192 low-risk profile. Endocrine therapy provides systemic benefit without need for chemo or radiation.",
+    "rationale": "Tumor <5 mm, ER+/PR+, HER2–, no high-risk features → low-risk profile. Endocrine therapy provides systemic benefit without need for chemo or radiation.",
     "wrongAnswerNotes": {
       "Adjuvant chemotherapy": "Overtreatment.",
       "Postmastectomy radiation therapy": "Not indicated with clear margins and negative nodes.",
@@ -20,6 +20,1050 @@
       "ER+",
       "Small invasive cancer",
       "Risk stratification"
+    ]
+  },
+  {
+    "id": "SRC002",
+    "stem": "A patient with ductal carcinoma in situ (DCIS) treated with lumpectomy and radiation is considering tamoxifen. Which benefit is supported by evidence?",
+    "choices": [
+      "Reduces ipsilateral invasive recurrence only",
+      "Reduces both ipsilateral and contralateral breast events",
+      "Improves overall survival",
+      "Prevents local recurrence after mastectomy"
+    ],
+    "answerIndex": 1,
+    "rationale": "Tamoxifen lowers both ipsilateral and contralateral event risk after breast-conservation therapy.",
+    "wrongAnswerNotes": {
+      "Reduces ipsilateral invasive recurrence only": "Incomplete.",
+      "Improves overall survival": "Survival unchanged in trials.",
+      "Prevents local recurrence after mastectomy": "Not applicable post-mastectomy."
+    },
+    "domain": "Care Continuum",
+    "tags": [
+      "DCIS",
+      "Tamoxifen",
+      "Risk reduction"
+    ]
+  },
+  {
+    "id": "SRC003",
+    "stem": "A 55-year-old postmenopausal woman presents with new nipple retraction and peau d’orange. What diagnostic test is essential before confirming inflammatory breast cancer?",
+    "choices": [
+      "Chest CT scan",
+      "Diagnostic mammography with ultrasound-guided core biopsy",
+      "Serum tumor markers CA 15-3 and CEA",
+      "Skin punch biopsy of the affected area"
+    ],
+    "answerIndex": 3,
+    "rationale": "Skin punch biopsy confirms dermal lymphatic invasion diagnostic for inflammatory breast cancer.",
+    "wrongAnswerNotes": {
+      "Chest CT scan": "Used for staging rather than diagnosis.",
+      "Diagnostic mammography with ultrasound-guided core biopsy": "Helpful but dermal lymphatic invasion requires skin punch.",
+      "Serum tumor markers CA 15-3 and CEA": "Non-diagnostic."
+    },
+    "domain": "Diagnosis & Staging",
+    "tags": [
+      "Inflammatory breast cancer",
+      "Biopsy",
+      "Diagnostic approach"
+    ]
+  },
+  {
+    "id": "SRC004",
+    "stem": "A patient receiving paclitaxel reports numbness and tingling in fingers and toes interfering with driving. What nursing intervention is most appropriate?",
+    "choices": [
+      "Recommend vitamin B complex daily",
+      "Hold the dose and notify the oncology provider",
+      "Encourage exercise to improve circulation",
+      "Reassure that this will resolve after chemotherapy ends"
+    ],
+    "answerIndex": 1,
+    "rationale": "Peripheral neuropathy indicates potential dose-limiting neurotoxicity; hold and evaluate.",
+    "wrongAnswerNotes": {
+      "Recommend vitamin B complex daily": "Does not address acute neurotoxicity risk.",
+      "Encourage exercise to improve circulation": "Does not address acute neurotoxicity risk.",
+      "Reassure that this will resolve after chemotherapy ends": "Minimizes a potentially dose-limiting toxicity."
+    },
+    "domain": "Nursing Practice",
+    "tags": [
+      "Taxane toxicity",
+      "Neuropathy",
+      "Dose modification"
+    ]
+  },
+  {
+    "id": "SRC005",
+    "stem": "After mastectomy, a patient is instructed on prevention of lymphedema. Which teaching statement indicates understanding?",
+    "choices": [
+      "“I can have blood drawn from either arm now.”",
+      "“I’ll wear compression sleeves only when swelling occurs.”",
+      "“I will avoid blood pressure measurements and needle sticks on this arm.”",
+      "“It’s okay to lift over 20 pounds as long as I use good posture.”"
+    ],
+    "answerIndex": 2,
+    "rationale": "Avoid trauma to the affected limb to prevent or minimize lymphedema.",
+    "wrongAnswerNotes": {},
+    "domain": "Nursing Practice",
+    "tags": [
+      "Lymphedema prevention",
+      "Post-mastectomy education"
+    ]
+  },
+  {
+    "id": "SRC006",
+    "stem": "A newly diagnosed patient with triple-negative breast cancer (TNBC) asks about recurrence risk. Which response is most accurate?",
+    "choices": [
+      "“TNBC tends to recur earlier but responds well to hormonal therapy.”",
+      "“TNBC has a higher risk of early recurrence and lacks hormone or HER2 targets.”",
+      "“TNBC generally indicates an indolent disease course with late metastases.”",
+      "“Recurrence risk is mainly associated with HER2 overexpression, not TNBC.”"
+    ],
+    "answerIndex": 1,
+    "rationale": "TNBC shows higher early recurrence and lacks endocrine/HER2-targeted options.",
+    "wrongAnswerNotes": {
+      "“TNBC tends to recur earlier but responds well to hormonal therapy.”": "TNBC lacks hormone receptors.",
+      "“TNBC generally indicates an indolent disease course with late metastases.”": "Opposite of typical TNBC pattern.",
+      "“Recurrence risk is mainly associated with HER2 overexpression, not TNBC.”": "Incorrect—TNBC independently confers risk."
+    },
+    "domain": "Diagnosis & Staging",
+    "tags": [
+      "TNBC",
+      "Recurrence",
+      "Prognosis"
+    ]
+  },
+  {
+    "id": "SRC007",
+    "stem": "A 63-year-old with metastatic breast cancer has severe dyspnea due to pleural effusion. What palliative intervention is most appropriate?",
+    "choices": [
+      "Immediate initiation of radiation therapy",
+      "Start broad-spectrum antibiotics",
+      "Therapeutic thoracentesis for fluid removal",
+      "High-dose corticosteroids to reduce inflammation"
+    ],
+    "answerIndex": 2,
+    "rationale": "Thoracentesis provides rapid symptomatic relief of dyspnea from malignant effusion.",
+    "wrongAnswerNotes": {
+      "Immediate initiation of radiation therapy": "Not first-line for symptomatic effusion.",
+      "Start broad-spectrum antibiotics": "Indicated only if infection is suspected.",
+      "High-dose corticosteroids to reduce inflammation": "Not definitive effusion management."
+    },
+    "domain": "Nursing Practice",
+    "tags": [
+      "Metastatic disease",
+      "Pleural effusion",
+      "Palliative care"
+    ]
+  },
+  {
+    "id": "SRC008",
+    "stem": "A patient undergoing trastuzumab therapy expresses concern about fatigue. What baseline assessment is critical before initiating this drug?",
+    "choices": [
+      "Thyroid-stimulating hormone",
+      "12-lead electrocardiogram",
+      "Echocardiogram or MUGA scan",
+      "Hepatic function panel"
+    ],
+    "answerIndex": 2,
+    "rationale": "Baseline LVEF assessment is required due to trastuzumab-associated cardiomyopathy risk.",
+    "wrongAnswerNotes": {
+      "Thyroid-stimulating hormone": "Not specific to trastuzumab toxicity.",
+      "12-lead electrocardiogram": "Electrical activity only; LVEF is key.",
+      "Hepatic function panel": "Not primary concern with trastuzumab."
+    },
+    "domain": "Treatment Modalities",
+    "tags": [
+      "HER2+",
+      "Trastuzumab",
+      "Cardiotoxicity"
+    ]
+  },
+  {
+    "id": "SRC009",
+    "stem": "A 43-year-old single mother reports distress and loss of control after chemotherapy-induced alopecia. What is the nurse’s best response?",
+    "choices": [
+      "“Your hair will grow back soon, so focus on staying positive.”",
+      "“Have you tried wearing a scarf? Many patients find that helps.”",
+      "“Tell me how losing your hair has affected you personally.”",
+      "“Hair loss happens to everyone on chemotherapy, and it’s temporary.”"
+    ],
+    "answerIndex": 2,
+    "rationale": "Open-ended, empathetic exploration supports coping and assessment.",
+    "wrongAnswerNotes": {
+      "“Your hair will grow back soon, so focus on staying positive.”": "Minimizes her feelings.",
+      "“Have you tried wearing a scarf? Many patients find that helps.”": "Directive without assessing her concerns.",
+      "“Hair loss happens to everyone on chemotherapy, and it’s temporary.”": "Generalizing and dismissive."
+    },
+    "domain": "Psychosocial",
+    "tags": [
+      "Body image",
+      "Coping",
+      "Communication"
+    ]
+  },
+  {
+    "id": "SRC010",
+    "stem": "In end-of-life care for a patient with metastatic breast cancer, which nursing action demonstrates best practice?",
+    "choices": [
+      "Emphasize hydration through IV fluids",
+      "Focus communication on resuming treatment",
+      "Provide meticulous oral care and comfort measures",
+      "Encourage eating as tolerated to prolong life"
+    ],
+    "answerIndex": 2,
+    "rationale": "Comfort-focused care (e.g., meticulous oral care) reduces symptom burden and aligns with hospice goals.",
+    "wrongAnswerNotes": {
+      "Emphasize hydration through IV fluids": "Often increases burden without improving comfort.",
+      "Focus communication on resuming treatment": "Incongruent with end-of-life priorities.",
+      "Encourage eating as tolerated to prolong life": "Feeding may not improve outcomes and can increase distress."
+    },
+    "domain": "Nursing Practice",
+    "tags": [
+      "End-of-life",
+      "Comfort care",
+      "Palliative principles"
+    ]
+  },
+  {
+    "id": "SRC011",
+    "stem": "A 68-year-old woman with newly diagnosed, 1.2 cm ER+/HER2–, Grade 1 tumor, multiple comorbidities, and consistent adherence. Which adjuvant therapy plan best reduces overtreatment?",
+    "choices": [
+      "Lumpectomy with radiation",
+      "Lumpectomy with endocrine therapy only",
+      "Lumpectomy with chemotherapy",
+      "Mastectomy with reconstruction"
+    ],
+    "answerIndex": 1,
+    "rationale": "In carefully selected older adults with low-risk ER+ disease, radiation may be omitted if endocrine therapy is given.",
+    "wrongAnswerNotes": {
+      "Lumpectomy with radiation": "Reasonable but may be omitted per trials (e.g., CALGB 9343) for select patients.",
+      "Lumpectomy with chemotherapy": "Overtreatment for low-risk features.",
+      "Mastectomy with reconstruction": "More invasive without survival benefit in this context."
+    },
+    "domain": "Treatment Modalities",
+    "tags": [
+      "Elderly",
+      "De-escalation therapy"
+    ]
+  },
+  {
+    "id": "SRC012",
+    "stem": "Which of the following regimens is most appropriate for adjuvant treatment of node-positive HER2+ breast cancer after lumpectomy?",
+    "choices": [
+      "Endocrine therapy only",
+      "Chemotherapy plus trastuzumab, then radiation",
+      "Chemo plus endocrine therapy, then HER2 therapy",
+      "Chemo, then HER2 therapy, then observation"
+    ],
+    "answerIndex": 1,
+    "rationale": "Standard is chemotherapy with concurrent or sequential HER2-targeted therapy, followed by radiation after breast-conserving surgery.",
+    "wrongAnswerNotes": {
+      "Endocrine therapy only": "Incomplete for HER2+ node-positive disease.",
+      "Chemo plus endocrine therapy, then HER2 therapy": "Incorrect sequencing; HER2 therapy accompanies/closely follows chemo.",
+      "Chemo, then HER2 therapy, then observation": "Radiation should follow lumpectomy."
+    },
+    "domain": "Treatment Modalities",
+    "tags": [
+      "HER2+",
+      "Adjuvant therapy",
+      "Sequencing"
+    ]
+  },
+  {
+    "id": "SRC013",
+    "stem": "Patient receiving capecitabine reports peeling and pain of palms—what is first-line nurse intervention?",
+    "choices": [
+      "Continue full dose, increase fluids",
+      "Hold dose and start emollients and supportive care",
+      "Add antibiotics for infection risk",
+      "Administer corticosteroids"
+    ],
+    "answerIndex": 1,
+    "rationale": "Early dose hold and aggressive emollient care to prevent progression of hand-foot syndrome.",
+    "wrongAnswerNotes": {
+      "Continue full dose, increase fluids": "Risks progression of toxicity.",
+      "Add antibiotics for infection risk": "Not indicated unless infection is suspected.",
+      "Administer corticosteroids": "Not first-line for HFS."
+    },
+    "domain": "Nursing Practice",
+    "tags": [
+      "Capecitabine",
+      "Toxicity management",
+      "Hand-foot syndrome"
+    ]
+  },
+  {
+    "id": "SRC014",
+    "stem": "Post-mastectomy, a patient’s flap shows pallor and coolness compared to the contralateral side. What is most appropriate?",
+    "choices": [
+      "Massage the area",
+      "Immediate surgical consult for suspected ischemia",
+      "Increase activity",
+      "Observe for spontaneous improvement"
+    ],
+    "answerIndex": 1,
+    "rationale": "Cool, pale flap suggests arterial insufficiency—urgent surgical evaluation is required.",
+    "wrongAnswerNotes": {
+      "Massage the area": "May worsen tissue injury.",
+      "Increase activity": "Inappropriate with suspected ischemia.",
+      "Observe for spontaneous improvement": "Delays intervention and risks loss of flap."
+    },
+    "domain": "Nursing Practice",
+    "tags": [
+      "Postoperative care",
+      "Flap monitoring"
+    ]
+  },
+  {
+    "id": "SRC015",
+    "stem": "Which combination best defines AJCC Stage IIIB breast cancer?",
+    "choices": [
+      "T2N1M0",
+      "T4a-cN0M0",
+      "Any T, N2, M0",
+      "T1N1M0"
+    ],
+    "answerIndex": 1,
+    "rationale": "Stage IIIB includes T4 tumors (extension to chest wall and/or skin) without distant metastasis.",
+    "wrongAnswerNotes": {
+      "T2N1M0": "Typically Stage IIB.",
+      "Any T, N2, M0": "Stage IIIA (depends on T/N).",
+      "T1N1M0": "Stage IIA."
+    },
+    "domain": "Diagnosis & Staging",
+    "tags": [
+      "AJCC8",
+      "Breast cancer staging"
+    ]
+  },
+  {
+    "id": "SRC016",
+    "stem": "Anthracycline/cyclophosphamide chemotherapy regimen leads to rhinorrhea and tearing after infusion. Likely cause?",
+    "choices": [
+      "Cyclophosphamide mucosal irritation",
+      "Doxorubicin-induced retinopathy",
+      "Filgrastim side effect",
+      "Infection"
+    ],
+    "answerIndex": 0,
+    "rationale": "Cyclophosphamide is irritating to mucosa, which can manifest as rhinorrhea and tearing.",
+    "wrongAnswerNotes": {
+      "Doxorubicin-induced retinopathy": "Not typical.",
+      "Filgrastim side effect": "Commonly bone pain rather than mucosal irritation.",
+      "Infection": "Consider if febrile; symptoms here are immediate post-infusion."
+    },
+    "domain": "Nursing Practice",
+    "tags": [
+      "Chemotherapy side effects",
+      "Cyclophosphamide"
+    ]
+  },
+  {
+    "id": "SRC017",
+    "stem": "Following sentinel lymph node biopsy, a patient feels numbness and tingling on upper inner arm without swelling. What’s the probable cause?",
+    "choices": [
+      "Lymphedema",
+      "Intercostobrachial nerve injury",
+      "Cellulitis",
+      "Deep vein thrombosis"
+    ],
+    "answerIndex": 1,
+    "rationale": "Sensory changes in the upper inner arm are classic for intercostobrachial nerve injury.",
+    "wrongAnswerNotes": {
+      "Lymphedema": "Presents with swelling/heaviness.",
+      "Cellulitis": "Would expect erythema, warmth, tenderness.",
+      "Deep vein thrombosis": "Rare in upper limb post-SLNB; swelling/pain more typical."
+    },
+    "domain": "Nursing Practice",
+    "tags": [
+      "Postoperative symptoms",
+      "Nerve injury"
+    ]
+  },
+  {
+    "id": "SRC018",
+    "stem": "Which agent can both reduce skeletal-related events and alleviate bone pain in metastatic disease?",
+    "choices": [
+      "Tamoxifen",
+      "Denosumab",
+      "Bevacizumab",
+      "Paclitaxel"
+    ],
+    "answerIndex": 1,
+    "rationale": "Denosumab decreases fracture risk and can reduce bone pain in patients with bone metastases.",
+    "wrongAnswerNotes": {
+      "Tamoxifen": "Endocrine agent; not a bone-targeted antiresorptive.",
+      "Bevacizumab": "Anti-angiogenic; not indicated for skeletal protection.",
+      "Paclitaxel": "Cytotoxic; not bone-targeted."
+    },
+    "domain": "Treatment Modalities",
+    "tags": [
+      "Bone metastases",
+      "Denosumab"
+    ]
+  },
+  {
+    "id": "SRC019",
+    "stem": "Persistent breast firmness and peau d’orange after radiation therapy with no fever best indicates:",
+    "choices": [
+      "Early infection",
+      "Radiation-induced fibrosis",
+      "Inflammatory carcinoma",
+      "Recurrent tumor"
+    ],
+    "answerIndex": 1,
+    "rationale": "Radiation fibrosis is a common late effect, presenting with firmness and skin thickening without signs of infection.",
+    "wrongAnswerNotes": {
+      "Early infection": "Typically accompanied by erythema, warmth, pain, and sometimes fever.",
+      "Inflammatory carcinoma": "Usually rapid onset with erythema and tenderness.",
+      "Recurrent tumor": "Needs imaging/biopsy if suspected; presentation here favors fibrosis."
+    },
+    "domain": "Nursing Practice",
+    "tags": [
+      "Radiation effects"
+    ]
+  },
+  {
+    "id": "SRC020",
+    "stem": "In palliative care, a patient states, “I’m ready to die, but my family insists on more treatment.” Best response?",
+    "choices": [
+      "“You should do what your family wants.”",
+      "“Can we talk about how you might share those feelings with them?”",
+      "“Let’s avoid discussing this for now.”",
+      "“Maybe more treatment will help.”"
+    ],
+    "answerIndex": 1,
+    "rationale": "Facilitates communication and supports patient autonomy and goals of care.",
+    "wrongAnswerNotes": {
+      "“You should do what your family wants.”": "Disempowering.",
+      "“Let’s avoid discussing this for now.”": "Avoidant.",
+      "“Maybe more treatment will help.”": "Not aligned with expressed wishes."
+    },
+    "domain": "Psychosocial",
+    "tags": [
+      "Communication",
+      "Autonomy",
+      "Palliative care"
+    ]
+  },
+  {
+    "id": "SRC021",
+    "stem": "Which intervention best reduces risk of mucositis during high-dose chemotherapy?",
+    "choices": [
+      "Lemon rinses",
+      "Ice chips during administration",
+      "Warm saline gargles",
+      "Chlorhexidine mouthwash"
+    ],
+    "answerIndex": 1,
+    "rationale": "Oral cryotherapy (ice chips) has evidence for preventing mucositis with specific agents like 5-FU/melphalan.",
+    "wrongAnswerNotes": {
+      "Lemon rinses": "Can be irritating and lacks evidence.",
+      "Warm saline gargles": "Comforting but not proven preventive.",
+      "Chlorhexidine mouthwash": "Not effective for prevention."
+    },
+    "domain": "Nursing Practice",
+    "tags": [
+      "Mucositis prevention"
+    ]
+  },
+  {
+    "id": "SRC022",
+    "stem": "Hand-foot syndrome during capecitabine can be best managed with:",
+    "choices": [
+      "Dose increase",
+      "Dose hold and emollient care",
+      "Steroid premedication",
+      "Antibiotics"
+    ],
+    "answerIndex": 1,
+    "rationale": "Early dose interruption plus intensive moisturization reduces severity and speeds recovery.",
+    "wrongAnswerNotes": {
+      "Dose increase": "Worsens toxicity.",
+      "Steroid premedication": "Not standard for hand-foot syndrome.",
+      "Antibiotics": "Only if infection present."
+    },
+    "domain": "Nursing Practice",
+    "tags": [
+      "Capecitabine toxicity"
+    ]
+  },
+  {
+    "id": "SRC023",
+    "stem": "What’s the most urgent assessment after new progressive night pain and bilateral leg weakness in a patient with bone mets?",
+    "choices": [
+      "Serum calcium",
+      "MRI of spine for cord compression",
+      "Blood culture",
+      "CT abdomen"
+    ],
+    "answerIndex": 1,
+    "rationale": "Spinal cord compression is an oncologic emergency—obtain urgent MRI and initiate steroids per protocol.",
+    "wrongAnswerNotes": {
+      "Serum calcium": "Does not address neurologic emergency.",
+      "Blood culture": "Not first-line without infection signs.",
+      "CT abdomen": "Unrelated to suspected cord compression."
+    },
+    "domain": "Nursing Practice",
+    "tags": [
+      "Metastasis",
+      "Emergency",
+      "Spinal cord compression"
+    ]
+  },
+  {
+    "id": "SRC024",
+    "stem": "Nurse notes cool pale tissue 3 hours post-mastectomy flap closure. What does this suggest?",
+    "choices": [
+      "Venous congestion likely",
+      "Complete viability",
+      "Early arterial insufficiency—needs intervention",
+      "Normal flaccidity"
+    ],
+    "answerIndex": 2,
+    "rationale": "Cool, pale flap suggests arterial insufficiency/ischemia; immediate surgical evaluation is needed.",
+    "wrongAnswerNotes": {
+      "Venous congestion likely": "Typically presents with cyanosis and warmth rather than pallor/coolness.",
+      "Complete viability": "Inconsistent with exam findings.",
+      "Normal flaccidity": "Does not explain color/temp change."
+    },
+    "domain": "Nursing Practice",
+    "tags": [
+      "Postoperative care",
+      "Flap monitoring"
+    ]
+  },
+  {
+    "id": "SRC025",
+    "stem": "A patient on bisphosphonate for bone mets develops hypocalcemia. What complication is most likely?",
+    "choices": [
+      "Osteonecrosis of the jaw",
+      "Anemia",
+      "Pancytopenia",
+      "Pleural effusion"
+    ],
+    "answerIndex": 0,
+    "rationale": "Antiresorptives are associated with ONJ risk; hypocalcemia is a known metabolic effect and signals need for dental and calcium/vitamin D management.",
+    "wrongAnswerNotes": {
+      "Anemia": "Not directly related.",
+      "Pancytopenia": "Not a typical antiresorptive effect.",
+      "Pleural effusion": "Unrelated."
+    },
+    "domain": "Nursing Practice",
+    "tags": [
+      "Osteonecrosis",
+      "Bisphosphonates"
+    ]
+  },
+  {
+    "id": "SRC026",
+    "stem": "A 34-year-old BRCA1 carrier recently underwent prophylactic bilateral salpingo-oophorectomy. Which long-term health risk does the nurse monitor most closely?",
+    "choices": [
+      "Chronic iron deficiency anemia",
+      "Early-onset osteoporosis",
+      "Hyperlipidemia",
+      "Diabetes mellitus"
+    ],
+    "answerIndex": 1,
+    "rationale": "Estrogen loss after early oophorectomy predisposes to accelerated bone loss and osteoporosis.",
+    "wrongAnswerNotes": {
+      "Chronic iron deficiency anemia": "Not a primary consequence of surgical menopause.",
+      "Hyperlipidemia": "Possible but bone loss is the key long-term risk.",
+      "Diabetes mellitus": "Not directly related."
+    },
+    "domain": "Care Continuum",
+    "tags": [
+      "BRCA1",
+      "Surgical menopause",
+      "Bone health"
+    ]
+  },
+  {
+    "id": "SRC027",
+    "stem": "A premenopausal woman with node-negative, ER-/PR-/HER2– breast cancer completed chemotherapy. What surveillance strategy is most appropriate?",
+    "choices": [
+      "Annual mammography and clinical exam",
+      "Routine PET/CT scanning every 6 months",
+      "Tumor marker follow-up every 3 months",
+      "Breast MRI every 6 months"
+    ],
+    "answerIndex": 0,
+    "rationale": "Guidelines recommend history/physical and annual mammogram; routine advanced imaging or tumor markers are not advised.",
+    "wrongAnswerNotes": {},
+    "domain": "Care Continuum",
+    "tags": [
+      "Survivorship",
+      "TNBC",
+      "Follow-up"
+    ]
+  },
+  {
+    "id": "SRC028",
+    "stem": "Which finding requires immediate provider notification during doxorubicin therapy?",
+    "choices": [
+      "Mild alopecia",
+      "Faint peripheral tingling",
+      "New-onset shortness of breath",
+      "Transient constipation"
+    ],
+    "answerIndex": 2,
+    "rationale": "New dyspnea may indicate cardiotoxicity and warrants urgent evaluation.",
+    "wrongAnswerNotes": {},
+    "domain": "Nursing Practice",
+    "tags": [
+      "Anthracycline",
+      "Cardiotoxicity",
+      "Nursing assessment"
+    ]
+  },
+  {
+    "id": "SRC029",
+    "stem": "A woman with newly diagnosed breast cancer expresses guilt for “causing this by stress.” What is the nurse’s best response?",
+    "choices": [
+      "“Stress can always lead to cancer development.”",
+      "“There’s no evidence stress causes cancer; let’s focus on what helps you cope now.”",
+      "“Your feelings suggest anxiety—can I ask about medications?”",
+      "“Try mindfulness; it prevents recurrence.”"
+    ],
+    "answerIndex": 1,
+    "rationale": "Corrects misinformation empathetically and pivots to supportive coping strategies.",
+    "wrongAnswerNotes": {
+      "“Stress can always lead to cancer development.”": "Perpetuates a myth.",
+      "“Your feelings suggest anxiety—can I ask about medications?”": "Prematurely medicalizes without exploring concerns.",
+      "“Try mindfulness; it prevents recurrence.”": "Not evidence-based as prevention."
+    },
+    "domain": "Psychosocial",
+    "tags": [
+      "Communication",
+      "Coping",
+      "Misinformation"
+    ]
+  },
+  {
+    "id": "SRC030",
+    "stem": "A patient receiving pertuzumab and trastuzumab combination for HER2+ breast cancer needs what key nursing monitoring?",
+    "choices": [
+      "Peripheral neuropathy",
+      "Nail discoloration",
+      "Cardiac function evaluation",
+      "Platelet count surveillance"
+    ],
+    "answerIndex": 2,
+    "rationale": "HER2-directed antibodies can reduce LVEF—baseline and periodic echocardiography are essential.",
+    "wrongAnswerNotes": {},
+    "domain": "Treatment Modalities",
+    "tags": [
+      "HER2+",
+      "Cardiotoxicity",
+      "Dual blockade"
+    ]
+  },
+  {
+    "id": "SRC031",
+    "stem": "Following completion of radiation therapy, a patient reports persistent breast firmness and peau d’orange but no erythema or pain. What is the likely cause?",
+    "choices": [
+      "Radiation-induced fibrosis",
+      "Infection (cellulitis)",
+      "New inflammatory carcinoma",
+      "Recurrent tumor"
+    ],
+    "answerIndex": 0,
+    "rationale": "Late radiation fibrosis commonly presents with firmness/skin changes without erythema or pain.",
+    "wrongAnswerNotes": {},
+    "domain": "Nursing Practice",
+    "tags": [
+      "Radiation sequelae"
+    ]
+  },
+  {
+    "id": "SRC032",
+    "stem": "A 69-year-old survivor develops mild right arm swelling and heaviness one year post-mastectomy. Diagnostic test of choice?",
+    "choices": [
+      "Venous ultrasound",
+      "MRI angiography",
+      "Lymphoscintigraphy",
+      "CT chest"
+    ],
+    "answerIndex": 2,
+    "rationale": "Lymphoscintigraphy assesses lymphatic flow/obstruction consistent with lymphedema.",
+    "wrongAnswerNotes": {},
+    "domain": "Diagnosis & Staging",
+    "tags": [
+      "Lymphedema",
+      "Imaging"
+    ]
+  },
+  {
+    "id": "SRC033",
+    "stem": "A patient beginning adjuvant capecitabine experiences mild hand discomfort and erythema after week 2. Optimal nurse management?",
+    "choices": [
+      "Continue dose and emphasize emollient use",
+      "Stop all therapy, refer to dermatology",
+      "Apply topical steroids and ice packs only",
+      "Delay dose until grade ≥3 develops"
+    ],
+    "answerIndex": 0,
+    "rationale": "Early moisturization, protective measures, and close monitoring may prevent progression of HFS.",
+    "wrongAnswerNotes": {},
+    "domain": "Nursing Practice",
+    "tags": [
+      "Capecitabine",
+      "Hand-foot syndrome"
+    ]
+  },
+  {
+    "id": "SRC034",
+    "stem": "During neoadjuvant treatment, what clinical observation suggests tumor response?",
+    "choices": [
+      "Improved blood counts",
+      "Softening and reduction in breast mass size",
+      "Elevated CRP",
+      "Nipple retraction"
+    ],
+    "answerIndex": 1,
+    "rationale": "Objective reduction in tumor size/firmness indicates response.",
+    "wrongAnswerNotes": {},
+    "domain": "Diagnosis & Staging",
+    "tags": [
+      "Neoadjuvant",
+      "Response"
+    ]
+  },
+  {
+    "id": "SRC035",
+    "stem": "Which patient requires referral to a genetics counselor?",
+    "choices": [
+      "ER+/HER2– cancer at age 68 with no family history",
+      "DCIS at 70, maternal autoimmune disease",
+      "Invasive cancer at 35, aunt diagnosed at 42",
+      "Metastatic disease at 80"
+    ],
+    "answerIndex": 2,
+    "rationale": "Young age at diagnosis plus family history meets common hereditary risk criteria.",
+    "wrongAnswerNotes": {},
+    "domain": "Care Continuum",
+    "tags": [
+      "Genetics",
+      "Family history"
+    ]
+  },
+  {
+    "id": "SRC036",
+    "stem": "A 58-year-old with new lymphedema post-radiation asks if massage will help. Which statement is accurate?",
+    "choices": [
+      "Avoid any massage—it can cause cancer spread",
+      "Manual lymph drainage by certified therapist can help",
+      "Massage has no proven benefit",
+      "Only diuretics work for swelling"
+    ],
+    "answerIndex": 1,
+    "rationale": "Manual lymph drainage with compression is evidence-based for lymphedema management.",
+    "wrongAnswerNotes": {},
+    "domain": "Nursing Practice",
+    "tags": [
+      "Lymphedema",
+      "Rehabilitation"
+    ]
+  },
+  {
+    "id": "SRC037",
+    "stem": "A 62-year-old on adjuvant taxane reports tearing and eye irritation. What adverse effect is suspected?",
+    "choices": [
+      "Photophobia from steroids",
+      "Peripheral neuropathy",
+      "Canalicular stenosis (nasolacrimal duct obstruction)",
+      "Retinopathy"
+    ],
+    "answerIndex": 2,
+    "rationale": "Taxanes can cause nasolacrimal duct stenosis leading to excessive tearing.",
+    "wrongAnswerNotes": {},
+    "domain": "Treatment Modalities",
+    "tags": [
+      "Taxane",
+      "Ocular toxicity"
+    ]
+  },
+  {
+    "id": "SRC038",
+    "stem": "A 52-year-old reports vaginal dryness on AI therapy affecting intimacy. Best first-line nurse recommendation?",
+    "choices": [
+      "Low-dose vaginal estrogen cream",
+      "Water-based moisturizers and lubricants",
+      "Hormone replacement therapy",
+      "Ginkgo supplements"
+    ],
+    "answerIndex": 1,
+    "rationale": "Non-hormonal moisturizers/lubricants are recommended first-line for AI-associated GSM.",
+    "wrongAnswerNotes": {},
+    "domain": "Nursing Practice",
+    "tags": [
+      "Sexual health",
+      "Aromatase inhibitors"
+    ]
+  },
+  {
+    "id": "SRC039",
+    "stem": "A 73-year-old with comorbidities has 1.1 cm Grade 1 ER+/HER2– tumor. Appropriate management?",
+    "choices": [
+      "Breast conservation with radiation",
+      "Lumpectomy with endocrine therapy only",
+      "Chemotherapy",
+      "Mastectomy with reconstruction"
+    ],
+    "answerIndex": 1,
+    "rationale": "In selected older adults with small low-grade ER+ tumors, radiation may be omitted if endocrine therapy is used.",
+    "wrongAnswerNotes": {
+      "Breast conservation with radiation": "Reasonable but may be omitted in select cases.",
+      "Chemotherapy": "Likely overtreatment.",
+      "Mastectomy with reconstruction": "More invasive without survival benefit."
+    },
+    "domain": "Treatment Modalities",
+    "tags": [
+      "Elderly",
+      "De-escalation"
+    ]
+  },
+  {
+    "id": "SRC040",
+    "stem": "A patient asks about purpose of “dose-dense AC” chemotherapy. Best explanation?",
+    "choices": [
+      "Smaller doses more frequently",
+      "Greater dose intensity reduces relapse risk",
+      "Reduces side effects",
+      "Less cumulative anthracycline"
+    ],
+    "answerIndex": 1,
+    "rationale": "Dose-dense schedules maintain higher dose intensity (shortened intervals) to improve disease control.",
+    "wrongAnswerNotes": {
+      "Smaller doses more frequently": "Misstates concept—doses are not necessarily smaller.",
+      "Reduces side effects": "Often increases hematologic toxicity without G-CSF.",
+      "Less cumulative anthracycline": "Cumulative dose is similar; interval is shortened."
+    },
+    "domain": "Treatment Modalities",
+    "tags": [
+      "Chemotherapy",
+      "Dose density"
+    ]
+  },
+  {
+    "id": "SRC041",
+    "stem": "Which symptom pattern should prompt urgent evaluation for spinal cord compression in metastatic breast cancer?",
+    "choices": [
+      "Lower back pain relieved by rest",
+      "Night pain with progressive leg weakness",
+      "Urinary frequency and flank tenderness",
+      "Shoulder stiffness after sleep"
+    ],
+    "answerIndex": 1,
+    "rationale": "Night pain with neurologic deficits suggests cord compression requiring emergent MRI and corticosteroids.",
+    "wrongAnswerNotes": {
+      "Lower back pain relieved by rest": "Non-specific.",
+      "Urinary frequency and flank tenderness": "Suggests GU issue.",
+      "Shoulder stiffness after sleep": "Benign musculoskeletal."
+    },
+    "domain": "Nursing Practice",
+    "tags": [
+      "Metastasis",
+      "Spinal cord compression"
+    ]
+  },
+  {
+    "id": "SRC042",
+    "stem": "In post-mastectomy care, which finding indicates early flap compromise?",
+    "choices": [
+      "Generalized bruising",
+      "Coolness and pallor of flap tissue",
+      "Mild itching",
+      "Serous drainage"
+    ],
+    "answerIndex": 1,
+    "rationale": "Coolness and pallor indicate ischemia—needs immediate evaluation.",
+    "wrongAnswerNotes": {
+      "Generalized bruising": "Common early finding.",
+      "Mild itching": "Benign.",
+      "Serous drainage": "Often expected."
+    },
+    "domain": "Nursing Practice",
+    "tags": [
+      "Reconstruction",
+      "Flap monitoring"
+    ]
+  },
+  {
+    "id": "SRC043",
+    "stem": "Which combination BEST defines Stage IIIB disease per AJCC 8th?",
+    "choices": [
+      "T3N0",
+      "Any T, N2",
+      "T4a–d, any N, M0",
+      "T4a with supraclavicular node involvement"
+    ],
+    "answerIndex": 2,
+    "rationale": "Stage IIIB = T4 (extension to chest wall/skin) with any N, M0.",
+    "wrongAnswerNotes": {
+      "T3N0": "Not T4.",
+      "Any T, N2": "Usually Stage IIIA or IIIB depending on T; not the defining feature.",
+      "T4a with supraclavicular node involvement": "Supraclavicular nodes are N3 → Stage IIIC."
+    },
+    "domain": "Diagnosis & Staging",
+    "tags": [
+      "AJCC 8th edition",
+      "Staging"
+    ]
+  },
+  {
+    "id": "SRC044",
+    "stem": "Patient on anthracycline/cyclophosphamide develops tearing and rhinorrhea. Possible contributing agent?",
+    "choices": [
+      "Cyclophosphamide mucosal irritation",
+      "Doxorubicin",
+      "Filgrastim",
+      "None"
+    ],
+    "answerIndex": 0,
+    "rationale": "Cyclophosphamide can irritate mucosa causing tearing and rhinorrhea.",
+    "wrongAnswerNotes": {
+      "Doxorubicin": "Less associated with this symptom complex.",
+      "Filgrastim": "Bone pain more typical.",
+      "None": "There is a likely culprit."
+    },
+    "domain": "Nursing Practice",
+    "tags": [
+      "Chemotherapy side effects"
+    ]
+  },
+  {
+    "id": "SRC045",
+    "stem": "A 39-year-old had lumpectomy for ER–/HER2+ tumor, node-positive. Which adjuvant therapy sequence is most appropriate?",
+    "choices": [
+      "Radiation → HER2 therapy → Chemo",
+      "Chemo + HER2-targeted therapy, then radiation",
+      "HER2 therapy only",
+      "Endocrine then chemo"
+    ],
+    "answerIndex": 1,
+    "rationale": "Chemotherapy with HER2-targeted therapy is given first; radiation follows breast-conserving surgery.",
+    "wrongAnswerNotes": {
+      "Radiation → HER2 therapy → Chemo": "Incorrect order.",
+      "HER2 therapy only": "Insufficient for node-positive disease.",
+      "Endocrine then chemo": "Endocrine therapy not indicated for ER– disease."
+    },
+    "domain": "Treatment Modalities",
+    "tags": [
+      "HER2+",
+      "Sequencing",
+      "Adjuvant therapy"
+    ]
+  },
+  {
+    "id": "SRC046",
+    "stem": "Which lab abnormality suggests bisphosphonate-related osteonecrosis risk?",
+    "choices": [
+      "Elevated alkaline phosphatase",
+      "Hypocalcemia",
+      "Leukopenia",
+      "Anemia"
+    ],
+    "answerIndex": 1,
+    "rationale": "Hypocalcemia is a known antiresorptive effect; while not causative for ONJ, it flags need for calcium/vitamin D optimization and dental vigilance.",
+    "wrongAnswerNotes": {
+      "Elevated alkaline phosphatase": "Non-specific.",
+      "Leukopenia": "Not related to ONJ risk.",
+      "Anemia": "Unrelated."
+    },
+    "domain": "Nursing Practice",
+    "tags": [
+      "Osteonecrosis",
+      "Bisphosphonates"
+    ]
+  },
+  {
+    "id": "SRC047",
+    "stem": "A 28-year-old with residual triple-negative disease after neoadjuvant chemo may gain survival benefit from which adjuvant agent?",
+    "choices": [
+      "Pembrolizumab",
+      "Trastuzumab deruxtecan",
+      "Capecitabine",
+      "Fulvestrant"
+    ],
+    "answerIndex": 2,
+    "rationale": "Adjuvant capecitabine improves outcomes in TNBC with residual disease after neoadjuvant therapy.",
+    "wrongAnswerNotes": {
+      "Pembrolizumab": "Used in other settings depending on PD-L1/KEYNOTE protocols.",
+      "Trastuzumab deruxtecan": "For HER2-positive or HER2-low metastatic settings.",
+      "Fulvestrant": "ER+ advanced disease agent."
+    },
+    "domain": "Treatment Modalities",
+    "tags": [
+      "TNBC",
+      "Adjuvant capecitabine"
+    ]
+  },
+  {
+    "id": "SRC048",
+    "stem": "Which postoperative finding after sentinel node biopsy suggests nerve injury rather than lymphedema?",
+    "choices": [
+      "Aching heaviness",
+      "Pitting edema",
+      "Numbness in upper inner arm",
+      "Swelling with erythema"
+    ],
+    "answerIndex": 2,
+    "rationale": "Numbness in the upper inner arm points to intercostobrachial nerve involvement.",
+    "wrongAnswerNotes": {
+      "Aching heaviness": "More typical of lymphedema.",
+      "Pitting edema": "Lymphedema sign.",
+      "Swelling with erythema": "Consider infection or inflammation."
+    },
+    "domain": "Nursing Practice",
+    "tags": [
+      "Postop assessment",
+      "Nerve injury"
+    ]
+  },
+  {
+    "id": "SRC049",
+    "stem": "Which intervention best prevents mucositis during chemotherapy?",
+    "choices": [
+      "Lemon rinses",
+      "Ice chips during chemotherapy",
+      "Warm saline gargles",
+      "Chlorhexidine mouthwash"
+    ],
+    "answerIndex": 1,
+    "rationale": "Cryotherapy with ice chips reduces mucosal injury for specific agents.",
+    "wrongAnswerNotes": {
+      "Lemon rinses": "May irritate mucosa.",
+      "Warm saline gargles": "Comfort only; limited prevention evidence.",
+      "Chlorhexidine mouthwash": "Not proven preventive."
+    },
+    "domain": "Nursing Practice",
+    "tags": [
+      "Mucositis",
+      "Prevention"
+    ]
+  },
+  {
+    "id": "SRC050",
+    "stem": "A patient receiving palliative care states, “I’m ready to die, but my family insists on more treatment.” Which nursing response is most therapeutic?",
+    "choices": [
+      "“You should do what your family wants.”",
+      "“Can we talk about how to share your feelings with them?”",
+      "“I’ll tell your doctor to stop treatment now.”",
+      "“Don’t say that—you still have hope.”"
+    ],
+    "answerIndex": 1,
+    "rationale": "Supports autonomy and facilitates a family conversation aligned with goals of care.",
+    "wrongAnswerNotes": {
+      "“You should do what your family wants.”": "Disempowers the patient.",
+      "“I’ll tell your doctor to stop treatment now.”": "Premature and directive.",
+      "“Don’t say that—you still have hope.”": "Invalidates expressed feelings."
+    },
+    "domain": "Psychosocial",
+    "tags": [
+      "Communication",
+      "Autonomy",
+      "Palliative care"
     ]
   }
 ]
