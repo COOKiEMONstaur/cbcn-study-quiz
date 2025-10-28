@@ -1,137 +1,177 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CBCN Study Quiz</title>
-  <link rel="stylesheet" href="style.css?v=4" />
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: var(--bg);
+      color: var(--text);
+      transition: background .3s, color .3s;
+    }
+    :root {
+      --bg: #ffffff;
+      --text: #111;
+      --panel: #f7f7f7;
+    }
+    html.light {
+      --bg: #fff;
+      --text: #111;
+      --panel: #f6f6f6;
+    }
+    html:not(.light) {
+      --bg: #1c1c1c;
+      --text: #f1f1f1;
+      --panel: #2a2a2a;
+    }
+    header {
+      padding: .75rem 1rem;
+      background: var(--panel);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 2;
+    }
+    header h1 { font-size: 1.2rem; margin: 0; }
+    main { padding: 1rem; max-width: 800px; margin: auto; }
+    .tabs { display: flex; gap: .5rem; margin-bottom: 1rem; }
+    .tabs button {
+      padding: .4rem .8rem; border: none; cursor: pointer;
+      background: var(--panel); color: var(--text); border-radius: .4rem;
+    }
+    .tabs button.active { background: #6a5acd; color: #fff; }
+    .view { display: none; }
+    .view.active { display: block; }
+    .tag { background: #6a5acd; color: #fff; padding: 2px 6px; border-radius: 6px; font-size: .8rem; margin-right: 4px; }
+    .badge { display: inline-block; padding: 3px 6px; border-radius: 4px; font-size: .8rem; }
+    .badge.ok { background: #4CAF50; color: white; }
+    .badge.no { background: #E53935; color: white; }
+    .muted { opacity: .8; }
+    .hidden { display: none; }
+    #choices label { display:block; margin:6px 0; }
+    #feedback { background: var(--panel); padding:.75rem; border-radius:6px; margin-top:1rem; }
+    #badges { margin-top:.5rem; }
+    .stats { display:flex; gap:1rem; font-size:.9rem; margin-top:.75rem; }
+    .pack-controls {
+      background: var(--panel);
+      padding: .5rem .75rem;
+      border-radius: .5rem;
+      margin-bottom: .75rem;
+      display:flex;
+      flex-wrap:wrap;
+      gap:1rem;
+      align-items:center;
+    }
+    .pack-controls label { display:inline-flex; gap:.4rem; align-items:center; cursor:pointer; }
+    button { cursor:pointer; }
+    #filterBar { display:flex; gap:.5rem; flex-wrap:wrap; align-items:center; margin-bottom:1rem; }
+    input, select { padding:.3rem; border-radius:.3rem; border:1px solid #ccc; }
+    #bankList .item, #historyList .item {
+      background: var(--panel);
+      margin-bottom:.5rem;
+      padding:.5rem .75rem;
+      border-radius:.4rem;
+    }
+  </style>
 </head>
 <body>
-  <header class="site-header">
-    <div class="brand">
-      <div class="dot"></div>
-      <h1>CBCN Study Quiz</h1>
+  <header>
+    <h1>🩺 CBCN Study Quiz</h1>
+    <div id="themeToggle">
+      <label style="font-size:.9rem;cursor:pointer;">
+        <input type="checkbox" id="optDark" checked> Dark Mode
+      </label>
     </div>
-    
-    <nav class="tabs">
-      <button data-view="quiz" class="active">Quiz</button>
+  </header>
+
+  <main>
+    <!-- PACK SELECTION -->
+    <div id="packControls"></div>
+
+    <!-- NAVIGATION TABS -->
+    <div class="tabs">
+      <button class="active" data-view="quiz">Quiz</button>
       <button data-view="bank">Question Bank</button>
       <button data-view="history">History</button>
       <button data-view="settings">Settings</button>
-    </nav>
-  </header>
+    </div>
 
-  <main class="layout">
-    <!-- Left: quiz / bank / history -->
-    <section class="maincol">
-      <!-- QUIZ VIEW -->
-      <div id="view-quiz" class="view active card">
-        <div class="qtop">
-          <div class="crumbs">
-            <span id="counter">1 / 1</span>
-            <span class="sep">•</span>
-            <span id="meta"></span>
-          </div>
-          <div class="badges" id="badges"></div>
-        </div>
-
-        <div id="stem" class="stem">Loading questions…</div>
-        <form id="choices" class="choices" aria-live="polite"></form>
-
-        <div class="actions">
-          <button id="submitBtn" type="button">Submit</button>
-          <button id="revealBtn" type="button" class="ghost">Reveal</button>
-          <button id="bookmarkBtn" type="button" class="ghost">★ Bookmark</button>
-          <button id="nextBtn" type="button" class="hidden">Next</button>
-        </div>
-
-        <div id="feedback" class="hidden feedback">
-          <div id="resultBadge" class="badge"></div>
-          <div id="rationale" class="rationale"></div>
-          <ul id="whyWrong" class="why"></ul>
-        </div>
-      </div>
-
-      <!-- BANK VIEW -->
-      <div id="view-bank" class="view card">
-        <h2 class="h2">Question Bank</h2>
-        <div id="bankList" class="bank-list"></div>
-      </div>
-
-      <!-- HISTORY VIEW -->
-      <div id="view-history" class="view card">
-        <div class="row between">
-          <h2 class="h2">Answered Questions</h2>
-          <div class="row gap">
-            <button id="exportBtn" class="ghost">Export CSV</button>
-            <button id="clearHistoryBtn" class="ghost">Clear History</button>
-          </div>
-        </div>
-        <div id="historyEmpty" class="muted">No answers yet.</div>
-        <div id="historyList" class="history-list"></div>
-      </div>
-
-      <!-- SETTINGS VIEW -->
-      <div id="view-settings" class="view card">
-        <h2 class="h2">Settings</h2>
-        <label class="line">
-          <input id="optShuffle" type="checkbox" />
-          Shuffle question order
+    <!-- QUIZ VIEW -->
+    <div id="view-quiz" class="view active">
+      <div id="filterBar">
+        <label>Domain:
+          <select id="filterDomain"><option>All</option></select>
         </label>
-        <label class="line">
-          <input id="optPersist" type="checkbox" />
-          Save session & history (local device)
+        <label>Tags:
+          <input id="filterTags" type="text" placeholder="Comma-separated tags...">
         </label>
-        <label class="line">
-          <input id="optDark" type="checkbox" />
-          Dark mode
-        </label>
-        <div class="row gap">
-          <button id="resetSessionBtn" class="ghost">Reset Session</button>
-          <button id="clearBookmarksBtn" class="ghost">Clear Bookmarks</button>
-        </div>
-        <div class="muted sm" style="margin-top:10px">
-          Data is stored only in your browser (localStorage). No cloud account needed.
-        </div>
+        <button id="reshuffleBtn">Shuffle</button>
+        <button id="resetBtn">Reset Session</button>
       </div>
-    </section>
 
-    <!-- Right: sidebar -->
-    <aside class="sidebar card">
+      <div id="meta" class="muted sm"></div>
+      <div id="badges"></div>
+      <h2 id="stem"></h2>
+      <div id="choices"></div>
+
       <div class="stats">
-        <div><div class="n" id="statCorrect">0</div><div class="l">Correct</div></div>
-        <div><div class="n" id="statIncorrect">0</div><div class="l">Incorrect</div></div>
-        <div><div class="n" id="statStreak">0</div><div class="l">Streak</div></div>
-        <div><div class="n" id="statBank">0</div><div class="l">Bank</div></div>
+        <span>✅ <b id="statCorrect">0</b></span>
+        <span>❌ <b id="statIncorrect">0</b></span>
+        <span>🔥 <b id="statStreak">0</b></span>
+        <span>📚 <b id="statBank">0</b></span>
+        <span>🔢 <b id="counter"></b></span>
       </div>
 
-      <div class="divider"></div>
-
-      <div class="filters">
-        <div class="label">Domain</div>
-        <select id="filterDomain">
-          <option value="All">All</option>
-        </select>
-
-        <div class="label">Tags</div>
-        <input id="filterTags" type="text" placeholder="e.g., HER2+, Survivorship" />
-
-        <div class="row gap">
-          <button id="reshuffleBtn" class="ghost">Reshuffle</button>
-          <button id="resetBtn" class="ghost">Reset Session</button>
-        </div>
-
-        <div class="label">Bookmarks</div>
-        <div id="bookmarkList" class="muted sm">None yet.</div>
+      <div style="margin-top:1rem;">
+        <button id="submitBtn">Submit</button>
+        <button id="revealBtn">Reveal</button>
+        <button id="nextBtn" class="hidden">Next</button>
+        <button id="bookmarkBtn">★ Bookmark</button>
       </div>
-      <div id="packControls" class="pack-controls"></div>
-    </aside>
+
+      <div id="feedback" class="hidden">
+        <div id="resultBadge" class="badge"></div>
+        <p id="rationale" style="margin:.5rem 0;"></p>
+        <ul id="whyWrong"></ul>
+      </div>
+    </div>
+
+    <!-- BANK VIEW -->
+    <div id="view-bank" class="view">
+      <h2>All Questions</h2>
+      <div id="bankList"></div>
+    </div>
+
+    <!-- HISTORY VIEW -->
+    <div id="view-history" class="view">
+      <h2>Answer History</h2>
+      <p id="historyEmpty" class="muted">No answers saved yet.</p>
+      <div id="historyList"></div>
+      <div style="margin-top:1rem;">
+        <button id="exportBtn">Export CSV</button>
+        <button id="clearHistoryBtn">Clear History</button>
+      </div>
+    </div>
+
+    <!-- SETTINGS VIEW -->
+    <div id="view-settings" class="view">
+      <h2>Settings</h2>
+      <label><input type="checkbox" id="optShuffle" checked> Shuffle Questions</label><br>
+      <label><input type="checkbox" id="optPersist" checked> Save Answer History</label><br>
+      <label><input type="checkbox" id="optDark" checked> Dark Mode</label><br><br>
+      <button id="clearBookmarksBtn">Clear Bookmarks</button>
+      <h3>Bookmarked Questions</h3>
+      <div id="bookmarkList" class="muted sm"></div>
+    </div>
   </main>
 
-  <footer class="site-footer">
-    Made for Nicole • CBCN prep • v1.0
-  </footer>
-
-  <script src="script.js?v=4"></script>
+  <script src="script.js"></script>
 </body>
 </html>
