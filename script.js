@@ -4,7 +4,7 @@
 
 // ---- MULTI-PACK CONFIG ----
 const PACKS = {
-  24oct2025:         { file: "advanced_cbcn_questions.json",        label: "24oct2025" },
+  26oct2025:         { file: "cbcn_26oct2025.json",        label: "26oct2025" },
   27oct2025:       { file: "cbcn_27oct2025.json",    label: "27oct2025" },
   // add more packs here as you create them:
   // diagnosis: { file: "cbcn_diagnosis.json", label: "Diagnosis & Staging" },
@@ -458,4 +458,5 @@ function hydrateSettings(){
   $("optDark").checked    = !!state.settings.dark;
 }
 function persistSettings(){ save(STORAGE.settings, state.settings); }
+
 
