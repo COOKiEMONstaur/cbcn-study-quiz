@@ -1,7 +1,7 @@
 [
   {
     "id": "SRC001",
-    "stem": "A 46-year-old BRCA2-positive woman undergoes prophylactic bilateral mastectomy with reconstruction. Pathology reveals an incidental 3 mm invasive ductal carcinoma, ER+, PR+, HER2–, no lymphovascular invasion. What is the most appropriate management?",
+    "stem": "A 46-year-old BRCA2-positive woman undergoes prophylactic bilateral mastectomy with reconstruction. Pathology reveals an incidental 3 mm invasive ductal carcinoma, ER+, PR+, HER2-, no lymphovascular invasion. What is the most appropriate management?",
     "choices": [
       "Adjuvant chemotherapy",
       "Postmastectomy radiation therapy",
@@ -9,7 +9,7 @@
       "Observation only"
     ],
     "answerIndex": 2,
-    "rationale": "Tumor <5 mm, ER+/PR+, HER2–, no high-risk features → low-risk profile. Endocrine therapy provides systemic benefit without need for chemo or radiation.",
+    "rationale": "Tumor <5 mm, ER+/PR+, HER2-, no high-risk features → low-risk profile. Endocrine therapy provides systemic benefit without need for chemo or radiation.",
     "wrongAnswerNotes": {
       "Adjuvant chemotherapy": "Overtreatment",
       "Postmastectomy radiation therapy": "Not indicated with clear margins, negative nodes",
@@ -47,7 +47,7 @@
   },
   {
     "id": "SRC003",
-    "stem": "A 55-year-old postmenopausal woman presents with new nipple retraction and peau d’orange. What diagnostic test is essential before confirming inflammatory breast cancer?",
+    "stem": "A 55-year-old postmenopausal woman presents with new nipple retraction and peau d'orange. What diagnostic test is essential before confirming inflammatory breast cancer?",
     "choices": [
       "Chest CT scan",
       "Diagnostic mammography with ultrasound-guided core biopsy",
@@ -95,14 +95,18 @@
     "id": "SRC005",
     "stem": "After mastectomy, a patient is instructed on prevention of lymphedema. Which teaching statement indicates understanding?",
     "choices": [
-      "“I can have blood drawn from either arm now.”",
-      "“I’ll wear compression sleeves only when swelling occurs.”",
-      "“I will avoid blood pressure measurements and needle sticks on this arm.”",
-      "“It’s okay to lift over 20 pounds as long as I use good posture.”"
+      "\"I can have blood drawn from either arm now.\"",
+      "\"I'll wear compression sleeves only when swelling occurs.\"",
+      "\"I will avoid blood pressure measurements and needle sticks on this arm.\"",
+      "\"It's okay to lift over 20 pounds as long as I use good posture.\""
     ],
     "answerIndex": 2,
     "rationale": "Avoid trauma to affected limb to prevent or minimize lymphedema.",
-    "wrongAnswerNotes": {},
+    "wrongAnswerNotes": {
+      "\"I can have blood drawn from either arm now.\"": "See rationale for guidance.",
+      "\"I'll wear compression sleeves only when swelling occurs.\"": "See rationale for guidance.",
+      "\"It's okay to lift over 20 pounds as long as I use good posture.\"": "See rationale for guidance."
+    },
     "domain": "Nursing Practice",
     "tags": [
       "Lymphedema prevention",
@@ -113,17 +117,20 @@
     "id": "SRC006",
     "stem": "A newly diagnosed patient with triple-negative breast cancer (TNBC) asks about recurrence risk. Which response is most accurate?",
     "choices": [
-      "“TNBC tends to recur earlier but responds well to hormonal therapy.”",
-      "“TNBC has a higher risk of early recurrence and lacks hormone or HER2 targets.”",
-      "“TNBC generally indicates an indolent disease course with late metastases.”",
-      "“Recurrence risk is mainly associated with HER2 overexpression, not TNBC.”"
+      "\"TNBC tends to recur earlier but responds well to hormonal therapy.\"",
+      "\"TNBC has a higher risk of early recurrence and lacks hormone or HER2 targets.\"",
+      "\"TNBC generally indicates an indolent disease course with late metastases.\"",
+      "\"Recurrence risk is mainly associated with HER2 overexpression, not TNBC.\""
     ],
     "answerIndex": 1,
     "rationale": "TNBC shows high early recurrence without hormonal or targeted therapies.",
     "wrongAnswerNotes": {
       "“TNBC tends to recur earlier but responds well to hormonal therapy.”": "Incorrect pathophysiology associations",
       "“TNBC generally indicates an indolent disease course with late metastases.”": "Incorrect pathophysiology associations",
-      "“Recurrence risk is mainly associated with HER2 overexpression, not TNBC.”": "Incorrect pathophysiology associations"
+      "“Recurrence risk is mainly associated with HER2 overexpression, not TNBC.”": "Incorrect pathophysiology associations",
+      "\"TNBC tends to recur earlier but responds well to hormonal therapy.\"": "See rationale for guidance.",
+      "\"TNBC generally indicates an indolent disease course with late metastases.\"": "See rationale for guidance.",
+      "\"Recurrence risk is mainly associated with HER2 overexpression, not TNBC.\"": "See rationale for guidance."
     },
     "domain": "Diagnosis & Staging",
     "tags": [
@@ -180,21 +187,24 @@
   },
   {
     "id": "SRC009",
-    "stem": "A 43-year-old single mother reports distress and loss of control after chemotherapy-induced alopecia. What is the nurse’s best response?",
+    "stem": "A 43-year-old single mother reports distress and loss of control after chemotherapy-induced alopecia. What is the nurse's best response?",
     "choices": [
-      "“Your hair will grow back soon, so focus on staying positive.”",
-      "“Have you tried wearing a scarf? Many patients find that helps.”",
-      "“Tell me how losing your hair has affected you personally.”",
-      "“Hair loss happens to everyone on chemotherapy, and it’s temporary.”"
+      "\"Your hair will grow back soon, so focus on staying positive.\"",
+      "\"Have you tried wearing a scarf? Many patients find that helps.\"",
+      "\"Tell me how losing your hair has affected you personally.\"",
+      "\"Hair loss happens to everyone on chemotherapy, and it's temporary.\""
     ],
     "answerIndex": 2,
     "rationale": "Open-ended empathy facilitates coping and psychosocial assessment.",
     "wrongAnswerNotes": {
       "“Your hair will grow back soon, so focus on staying positive.”": "Dismissive or directive rather than supportive",
       "“Have you tried wearing a scarf? Many patients find that helps.”": "Dismissive or directive rather than supportive",
-      "“Hair loss happens to everyone on chemotherapy, and it’s temporary.”": "Dismissive or directive rather than supportive"
+      "“Hair loss happens to everyone on chemotherapy, and it’s temporary.”": "Dismissive or directive rather than supportive",
+      "\"Your hair will grow back soon, so focus on staying positive.\"": "See rationale for guidance.",
+      "\"Have you tried wearing a scarf? Many patients find that helps.\"": "See rationale for guidance.",
+      "\"Hair loss happens to everyone on chemotherapy, and it's temporary.\"": "See rationale for guidance."
     },
-    "domain": "Psychosocial Care",
+    "domain": "Psychosocial",
     "tags": [
       "Body image",
       "Coping",
@@ -226,7 +236,7 @@
   },
   {
     "id": "SRC011",
-    "stem": "A 68-year-old woman with newly diagnosed, 1.2 cm ER+/HER2–, Grade 1 tumor, multiple comorbidities, and consistent adherence. Which adjuvant therapy plan best reduces overtreatment?",
+    "stem": "A 68-year-old woman with newly diagnosed, 1.2 cm ER+/HER2-, Grade 1 tumor, multiple comorbidities, and consistent adherence. Which adjuvant therapy plan best reduces overtreatment?",
     "choices": [
       "Lumpectomy with radiation",
       "Lumpectomy with endocrine therapy only",
@@ -271,7 +281,7 @@
   },
   {
     "id": "SRC013",
-    "stem": "Patient receiving capecitabine reports peeling and pain of palms—what is first-line nurse intervention?",
+    "stem": "Patient receiving capecitabine reports peeling and pain of palms-what is first-line nurse intervention?",
     "choices": [
       "Continue full dose, increase fluids",
       "Hold dose and start emollients and supportive care",
@@ -294,7 +304,7 @@
   },
   {
     "id": "SRC014",
-    "stem": "Post-mastectomy, a patient’s flap shows pallor and coolness compared to the contralateral side. What is most appropriate?",
+    "stem": "Post-mastectomy, a patient's flap shows pallor and coolness compared to the contralateral side. What is most appropriate?",
     "choices": [
       "Massage the area",
       "Immediate surgical consult for suspected ischemia",
@@ -360,7 +370,7 @@
   },
   {
     "id": "SRC017",
-    "stem": "Following sentinel lymph node biopsy, a patient feels numbness and tingling on upper inner arm without swelling. What’s the probable cause?",
+    "stem": "Following sentinel lymph node biopsy, a patient feels numbness and tingling on upper inner arm without swelling. What's the probable cause?",
     "choices": [
       "Lymphedema",
       "Intercostobrachial nerve injury",
@@ -404,7 +414,7 @@
   },
   {
     "id": "SRC019",
-    "stem": "Persistent breast firmness and peau d’orange after radiation therapy with no fever best indicates:",
+    "stem": "Persistent breast firmness and peau d'orange after radiation therapy with no fever best indicates:",
     "choices": [
       "Early infection",
       "Radiation-induced fibrosis",
@@ -425,21 +435,24 @@
   },
   {
     "id": "SRC020",
-    "stem": "In palliative care, a patient states, “I’m ready to die, but my family insists on more treatment.” Best response?",
+    "stem": "In palliative care, a patient states, \"I'm ready to die, but my family insists on more treatment.\" Best response?",
     "choices": [
-      "“You should do what your family wants.”",
-      "“Can we talk about how you might share those feelings with them?”",
-      "“Let’s avoid discussing this for now.”",
-      "“Maybe more treatment will help.”"
+      "\"You should do what your family wants.\"",
+      "\"Can we talk about how you might share those feelings with them?\"",
+      "\"Let's avoid discussing this for now.\"",
+      "\"Maybe more treatment will help.\""
     ],
     "answerIndex": 1,
     "rationale": "Supports patient autonomy and facilitates communication.",
     "wrongAnswerNotes": {
       "“You should do what your family wants.”": "Disempowering or dismissive",
       "“Let’s avoid discussing this for now.”": "Disempowering or dismissive",
-      "“Maybe more treatment will help.”": "Disempowering or dismissive"
+      "“Maybe more treatment will help.”": "Disempowering or dismissive",
+      "\"You should do what your family wants.\"": "See rationale for guidance.",
+      "\"Let's avoid discussing this for now.\"": "See rationale for guidance.",
+      "\"Maybe more treatment will help.\"": "See rationale for guidance."
     },
-    "domain": "Psychosocial Dimensions of Care",
+    "domain": "Psychosocial",
     "tags": [
       "Communication",
       "Autonomy"
@@ -489,7 +502,7 @@
   },
   {
     "id": "SRC023",
-    "stem": "What’s the most urgent assessment after new progressive night pain and bilateral leg weakness in a patient with bone mets?",
+    "stem": "What's the most urgent assessment after new progressive night pain and bilateral leg weakness in a patient with bone mets?",
     "choices": [
       "Serum calcium",
       "MRI of spine for cord compression",
@@ -515,7 +528,7 @@
     "choices": [
       "Venous congestion likely",
       "Complete viability",
-      "Early arterial insufficiency—needs intervention",
+      "Early arterial insufficiency-needs intervention",
       "Normal flaccidity"
     ],
     "answerIndex": 2,
@@ -577,7 +590,7 @@
   },
   {
     "id": "SRC027",
-    "stem": "A premenopausal woman with node-negative, ER-/PR-/HER2– breast cancer completed chemotherapy. What surveillance strategy is most appropriate?",
+    "stem": "A premenopausal woman with node-negative, ER-/PR-/HER2- breast cancer completed chemotherapy. What surveillance strategy is most appropriate?",
     "choices": [
       "Annual mammography and clinical exam",
       "Routine PET/CT scanning every 6 months",
@@ -586,7 +599,11 @@
     ],
     "answerIndex": 0,
     "rationale": "Only annual mammogram and clinical assessment advised; advanced imaging not routine.",
-    "wrongAnswerNotes": {},
+    "wrongAnswerNotes": {
+      "Routine PET/CT scanning every 6 months": "See rationale for guidance.",
+      "Tumor marker follow-up every 3 months": "See rationale for guidance.",
+      "Breast MRI every 6 months": "See rationale for guidance."
+    },
     "domain": "Care Continuum",
     "tags": [
       "Survivorship",
@@ -605,7 +622,11 @@
     ],
     "answerIndex": 2,
     "rationale": "Possible sign of cardiotoxicity; requires urgent evaluation.",
-    "wrongAnswerNotes": {},
+    "wrongAnswerNotes": {
+      "Mild alopecia": "See rationale for guidance.",
+      "Faint peripheral tingling": "See rationale for guidance.",
+      "Transient constipation": "See rationale for guidance."
+    },
     "domain": "Nursing Practice",
     "tags": [
       "Anthracycline",
@@ -615,19 +636,22 @@
   },
   {
     "id": "SRC029",
-    "stem": "A woman with newly diagnosed breast cancer expresses guilt for “causing this by stress.” What is the nurse’s best response?",
+    "stem": "A woman with newly diagnosed breast cancer expresses guilt for \"causing this by stress.\" What is the nurse's best response?",
     "choices": [
-      "“Stress can always lead to cancer development.”",
-      "“There’s no evidence stress causes cancer; let’s focus on what helps you cope now.”",
-      "“Your feelings suggest anxiety—can I ask about medications?”",
-      "“Try mindfulness; it prevents recurrence.”"
+      "\"Stress can always lead to cancer development.\"",
+      "\"There's no evidence stress causes cancer; let's focus on what helps you cope now.\"",
+      "\"Your feelings suggest anxiety-can I ask about medications?\"",
+      "\"Try mindfulness; it prevents recurrence.\""
     ],
     "answerIndex": 1,
     "rationale": "Corrects misinformation empathetically and promotes coping.",
     "wrongAnswerNotes": {
       "“Stress can always lead to cancer development.”": "Perpetuates myth",
       "“Your feelings suggest anxiety—can I ask about medications?”": "Redirects prematurely",
-      "“Try mindfulness; it prevents recurrence.”": "Not evidence-based"
+      "“Try mindfulness; it prevents recurrence.”": "Not evidence-based",
+      "\"Stress can always lead to cancer development.\"": "See rationale for guidance.",
+      "\"Your feelings suggest anxiety-can I ask about medications?\"": "See rationale for guidance.",
+      "\"Try mindfulness; it prevents recurrence.\"": "See rationale for guidance."
     },
     "domain": "Psychosocial",
     "tags": [
@@ -647,7 +671,11 @@
     ],
     "answerIndex": 2,
     "rationale": "HER2 antibodies may reduce LVEF; baseline, periodic echo essential.",
-    "wrongAnswerNotes": {},
+    "wrongAnswerNotes": {
+      "Peripheral neuropathy": "See rationale for guidance.",
+      "Nail discoloration": "See rationale for guidance.",
+      "Platelet count surveillance": "See rationale for guidance."
+    },
     "domain": "Treatment Modalities",
     "tags": [
       "HER2+",
@@ -657,7 +685,7 @@
   },
   {
     "id": "SRC031",
-    "stem": "Following completion of radiation therapy, a patient reports persistent breast firmness and peau d’orange but no erythema or pain. What is the likely cause?",
+    "stem": "Following completion of radiation therapy, a patient reports persistent breast firmness and peau d'orange but no erythema or pain. What is the likely cause?",
     "choices": [
       "Radiation-induced fibrosis",
       "Infection (cellulitis)",
@@ -666,7 +694,11 @@
     ],
     "answerIndex": 0,
     "rationale": "Radiation fibrosis is common late effect causing skin thickening without infection signs.",
-    "wrongAnswerNotes": {},
+    "wrongAnswerNotes": {
+      "Infection (cellulitis)": "See rationale for guidance.",
+      "New inflammatory carcinoma": "See rationale for guidance.",
+      "Recurrent tumor": "See rationale for guidance."
+    },
     "domain": "Nursing Practice",
     "tags": [
       "Radiation sequelae"
@@ -683,7 +715,11 @@
     ],
     "answerIndex": 2,
     "rationale": "Lymphoscintigraphy identifies lymphatic flow obstruction in chronic lymphedema.",
-    "wrongAnswerNotes": {},
+    "wrongAnswerNotes": {
+      "Venous ultrasound": "See rationale for guidance.",
+      "MRI angiography": "See rationale for guidance.",
+      "CT chest": "See rationale for guidance."
+    },
     "domain": "Diagnosis & Staging",
     "tags": [
       "Lymphedema",
@@ -701,7 +737,11 @@
     ],
     "answerIndex": 0,
     "rationale": "Early moisturing and monitoring prevent worsening.",
-    "wrongAnswerNotes": {},
+    "wrongAnswerNotes": {
+      "Stop all therapy, refer to dermatology": "See rationale for guidance.",
+      "Apply topical steroids and ice packs only": "See rationale for guidance.",
+      "Delay dose until grade ≥3 develops": "See rationale for guidance."
+    },
     "domain": "Nursing Practice",
     "tags": [
       "Capecitabine",
@@ -719,7 +759,11 @@
     ],
     "answerIndex": 1,
     "rationale": "Objective regression indicates therapeutic efficacy.",
-    "wrongAnswerNotes": {},
+    "wrongAnswerNotes": {
+      "Improved blood counts": "See rationale for guidance.",
+      "Elevated CRP": "See rationale for guidance.",
+      "Nipple retraction": "See rationale for guidance."
+    },
     "domain": "Diagnosis & Staging",
     "tags": [
       "Neoadjuvant",
@@ -730,14 +774,18 @@
     "id": "SRC035",
     "stem": "Which patient requires referral to a genetics counselor?",
     "choices": [
-      "ER+/HER2– cancer at age 68 with no family history",
+      "ER+/HER2- cancer at age 68 with no family history",
       "DCIS at 70, maternal autoimmune disease",
       "Invasive cancer at 35, aunt diagnosed at 42",
       "Metastatic disease at 80"
     ],
     "answerIndex": 2,
     "rationale": "Young age plus family history meets NCCN criteria.",
-    "wrongAnswerNotes": {},
+    "wrongAnswerNotes": {
+      "ER+/HER2- cancer at age 68 with no family history": "See rationale for guidance.",
+      "DCIS at 70, maternal autoimmune disease": "See rationale for guidance.",
+      "Metastatic disease at 80": "See rationale for guidance."
+    },
     "domain": "Care Continuum",
     "tags": [
       "Genetics",
@@ -748,14 +796,18 @@
     "id": "SRC036",
     "stem": "A 58-year-old with new lymphedema post-radiation asks if massage will help. Which statement is accurate?",
     "choices": [
-      "Avoid any massage—it can cause cancer spread",
+      "Avoid any massage-it can cause cancer spread",
       "Manual lymph drainage by certified therapist can help",
       "Massage has no proven benefit",
       "Only diuretics work for swelling"
     ],
     "answerIndex": 1,
     "rationale": "Manual lymph drainage is effective rehab.",
-    "wrongAnswerNotes": {},
+    "wrongAnswerNotes": {
+      "Avoid any massage-it can cause cancer spread": "See rationale for guidance.",
+      "Massage has no proven benefit": "See rationale for guidance.",
+      "Only diuretics work for swelling": "See rationale for guidance."
+    },
     "domain": "Nursing Practice",
     "tags": [
       "Lymphedema",
@@ -773,7 +825,11 @@
     ],
     "answerIndex": 2,
     "rationale": "Taxane-induced canalicular stenosis causes tearing.",
-    "wrongAnswerNotes": {},
+    "wrongAnswerNotes": {
+      "Photophobia from steroids": "See rationale for guidance.",
+      "Peripheral neuropathy": "See rationale for guidance.",
+      "Retinopathy": "See rationale for guidance."
+    },
     "domain": "Treatment Modalities",
     "tags": [
       "Taxane",
@@ -791,7 +847,11 @@
     ],
     "answerIndex": 1,
     "rationale": "Non-hormonal agents preferred first.",
-    "wrongAnswerNotes": {},
+    "wrongAnswerNotes": {
+      "Low-dose vaginal estrogen cream": "See rationale for guidance.",
+      "Hormone replacement therapy": "See rationale for guidance.",
+      "Ginkgo supplements": "See rationale for guidance."
+    },
     "domain": "Nursing Practice",
     "tags": [
       "Sexual health",
@@ -800,7 +860,7 @@
   },
   {
     "id": "SRC039",
-    "stem": "A 73-year-old with comorbidities has 1.1 cm Grade 1 ER+/HER2– tumor. Appropriate management?",
+    "stem": "A 73-year-old with comorbidities has 1.1 cm Grade 1 ER+/HER2- tumor. Appropriate management?",
     "choices": [
       "Breast conservation with radiation",
       "Lumpectomy with endocrine therapy only",
@@ -822,7 +882,7 @@
   },
   {
     "id": "SRC040",
-    "stem": "A patient asks about purpose of “dose-dense AC” chemotherapy. Best explanation?",
+    "stem": "A patient asks about purpose of \"dose-dense AC\" chemotherapy. Best explanation?",
     "choices": [
       "Smaller doses more frequently",
       "Greater dose intensity reduces relapse risk",
@@ -892,7 +952,7 @@
     "choices": [
       "T3N0",
       "Any T, N2",
-      "T4a–d, any N, M0",
+      "T4a-d, any N, M0",
       "T4a with supraclavicular node involvement"
     ],
     "answerIndex": 2,
@@ -931,7 +991,7 @@
   },
   {
     "id": "SRC045",
-    "stem": "A 39-year-old had lumpectomy for ER–/HER2+ tumor, node-positive. Which adjuvant therapy sequence is most appropriate?",
+    "stem": "A 39-year-old had lumpectomy for ER-/HER2+ tumor, node-positive. Which adjuvant therapy sequence is most appropriate?",
     "choices": [
       "Radiation → HER2 therapy → Chemo",
       "Chemo + HER2-targeted therapy, then radiation",
@@ -1042,21 +1102,24 @@
   },
   {
     "id": "SRC050",
-    "stem": "A patient receiving palliative care states, “I’m ready to die, but my family insists on more treatment.” Which nursing response is most therapeutic?",
+    "stem": "A patient receiving palliative care states, \"I'm ready to die, but my family insists on more treatment.\" Which nursing response is most therapeutic?",
     "choices": [
-      "“You should do what your family wants.”",
-      "“Can we talk about how to share your feelings with them?”",
-      "“I’ll tell your doctor to stop treatment now.”",
-      "“Don’t say that—you still have hope.”"
+      "\"You should do what your family wants.\"",
+      "\"Can we talk about how to share your feelings with them?\"",
+      "\"I'll tell your doctor to stop treatment now.\"",
+      "\"Don't say that-you still have hope.\""
     ],
     "answerIndex": 1,
     "rationale": "Supports patient autonomy and facilitates communication.",
     "wrongAnswerNotes": {
       "“You should do what your family wants.”": "Disempowering or dismissive",
       "“I’ll tell your doctor to stop treatment now.”": "Disempowering or dismissive",
-      "“Don’t say that—you still have hope.”": "Disempowering or dismissive"
+      "“Don’t say that—you still have hope.”": "Disempowering or dismissive",
+      "\"You should do what your family wants.\"": "See rationale for guidance.",
+      "\"I'll tell your doctor to stop treatment now.\"": "See rationale for guidance.",
+      "\"Don't say that-you still have hope.\"": "See rationale for guidance."
     },
-    "domain": "Psychosocial Dimensions of Care",
+    "domain": "Psychosocial",
     "tags": [
       "Communication",
       "Autonomy",
