@@ -1,73 +1,245 @@
-:root{
-  --bg:#0f1220; --card:#161a2a; --text:#eaf0ff; --muted:#9aa3b2; --accent:#5c9dff;
-  --ok:#1fd38a; --warn:#ffbd2f; --err:#ff5c6a; --border:#20263b;
-}
-:root.light{
-  --bg:#f6f7fb; --card:#ffffff; --text:#111827; --muted:#6b7280; --accent:#2563eb;
-  --ok:#10b981; --warn:#d97706; --err:#ef4444; --border:#e5e7eb;
-}
-*{box-sizing:border-box}
-html,body{height:100%}
-body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--text)}
-a{color:var(--accent);text-decoration:none}
-.site-header{display:flex;align-items:center;justify-content:space-between;padding:14px 16px}
-.brand{display:flex;align-items:center;gap:10px}
-.brand .dot{width:10px;height:10px;border-radius:50%;background:var(--accent)}
-.brand h1{font-size:18px;margin:0}
-.tabs button{background:transparent;border:1px solid var(--border);color:var(--text);padding:8px 10px;border-radius:10px;margin-left:6px;cursor:pointer}
-.tabs button.active{background:var(--accent);border-color:var(--accent);color:#fff}
+/* ==========================
+   CBCN Study Quiz Stylesheet
+   ========================== */
 
-.layout{display:grid;grid-template-columns:1fr 320px;gap:16px;max-width:1100px;margin:0 auto;padding:8px 16px 24px}
-.card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:16px;box-shadow:0 6px 18px rgba(0,0,0,.08)}
-.view{display:none}
-.view.active{display:block}
-.h2{margin:0 0 10px}
-.row{display:flex;align-items:center}
-.between{justify-content:space-between}
-.gap{gap:8px}
-.line{display:flex;gap:8px;align-items:center;margin:8px 0}
-.divider{height:1px;background:var(--border);margin:14px 0}
-
-.qtop{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
-.crumbs{color:var(--muted);font-size:14px}
-.badges{display:flex;gap:6px;flex-wrap:wrap}
-.badges .tag{background:transparent;border:1px solid var(--border);padding:4px 8px;border-radius:999px;color:var(--muted);font-size:12px}
-
-.stem{font-size:18px;margin:12px 0}
-.choices label{display:block;border:1px solid var(--border);border-radius:12px;padding:10px 12px;margin:8px 0;cursor:pointer;background:rgba(255,255,255,.02)}
-.choices input{margin-right:10px}
-
-.actions{display:flex;gap:8px;margin-top:8px}
-button{border:none;background:var(--accent);color:#fff;font-weight:600;border-radius:10px;padding:10px 12px;cursor:pointer}
-button.ghost{background:transparent;color:var(--text);border:1px solid var(--border)}
-button.hidden{display:none}
-
-.feedback{margin-top:10px}
-.badge{display:inline-block;padding:6px 10px;border-radius:999px;background:rgba(255,255,255,.06)}
-.badge.ok{background:rgba(16,185,129,.15);color:var(--ok)}
-.badge.no{background:rgba(239,68,68,.15);color:var(--err)}
-.rationale{margin-top:8px}
-.why{margin-top:6px;color:var(--muted)}
-.muted{color:var(--muted)}
-.muted.sm{font-size:12px}
-
-.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
-.stats .n{font-size:22px;font-weight:800}
-.stats .l{color:var(--muted);font-size:12px}
-
-.bank-list .item, .history-list .item{border-top:1px solid var(--border);padding:10px 0}
-.bank-list .stem{margin:4px 0}
-.history-list .stem{margin:4px 0}
-.site-footer{max-width:1100px;margin:0 auto 28px;color:var(--muted);text-align:center}
-
-@media (max-width: 960px){
-  .layout{grid-template-columns:1fr}
-  .sidebar{order:-1}
+/* --- ROOT THEME --- */
+:root {
+  --bg: #ffffff;
+  --text: #1b1b1b;
+  --panel: #f6f6f6;
+  --accent: #6a5acd;
+  --ok: #4caf50;
+  --no: #e53935;
+  --muted: #777;
 }
 
-.pack-controls {
-  background: #f6f6f6;
-  padding: .5rem .75rem;
-  border-radius: .5rem;
-  margin-bottom: .75rem;
+html:not(.light) {
+  --bg: #1c1c1c;
+  --text: #f1f1f1;
+  --panel: #2a2a2a;
+  --accent: #a58bff;
+  --muted: #aaa;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.5;
+  transition: background 0.3s, color 0.3s;
+}
+
+/* --- HEADER --- */
+header {
+  background: var(--panel);
+  padding: 0.75rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+header h1 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+/* --- TABS --- */
+.tabs {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+.tabs button {
+  background: var(--panel);
+  border: none;
+  border-radius: 6px;
+  padding: 0.4rem 0.8rem;
+  color: var(--text);
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background 0.2s;
+}
+.tabs button:hover {
+  background: var(--accent);
+  color: #fff;
+}
+.tabs button.active {
+  background: var(--accent);
+  color: #fff;
+}
+
+/* --- MAIN --- */
+main {
+  max-width: 800px;
+  margin: 1rem auto;
+  padding: 0 1rem 3rem;
+}
+
+/* --- QUIZ ELEMENTS --- */
+#stem {
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin: 1rem 0 0.75rem;
+}
+
+#choices label {
+  display: block;
+  background: var(--panel);
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+  margin-bottom: 0.5rem;
+  transition: background 0.2s;
+}
+#choices label:hover {
+  background: rgba(106, 90, 205, 0.2);
+}
+#choices input[type="radio"] {
+  margin-right: 0.5rem;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  border-radius: 6px;
+  padding: 0.45rem 0.9rem;
+  background: var(--accent);
+  color: white;
+  font-size: 0.9rem;
+  transition: background 0.2s;
+}
+button:hover {
+  background: #5949c6;
+}
+button.hidden {
+  display: none;
+}
+
+#bookmarkBtn {
+  background: transparent;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+}
+#bookmarkBtn:hover {
+  background: var(--accent);
+  color: white;
+}
+
+.stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin: 0.5rem 0;
+  font-size: 0.9rem;
+}
+
+/* --- FEEDBACK --- */
+#feedback {
+  background: var(--panel);
+  border-radius: 6px;
+  padding: 0.75rem;
+  margin-top: 1rem;
+}
+.badge {
+  display: inline-block;
+  padding: 3px 8px;
+  border-radius: 5px;
+  font-size: 0.8rem;
+}
+.badge.ok { background: var(--ok); color: #fff; }
+.badge.no { background: var(--no); color: #fff; }
+.tag {
+  display: inline-block;
+  background: var(--accent);
+  color: white;
+  border-radius: 6px;
+  padding: 2px 6px;
+  font-size: 0.8rem;
+  margin-right: 0.25rem;
+}
+
+/* --- PACK CONTROLS --- */
+#packControls {
+  background: var(--panel);
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+  justify-content: flex-start;
+}
+#packControls label {
+  display: inline-flex;
+  gap: 0.4rem;
+  align-items: center;
+  cursor: pointer;
+}
+#packControls button {
+  background: var(--accent);
+  color: #fff;
+}
+#packSummary {
+  font-size: 0.85rem;
+  opacity: 0.8;
+}
+
+/* --- FILTER BAR --- */
+#filterBar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+#filterBar label {
+  font-size: 0.9rem;
+}
+#filterBar input,
+#filterBar select {
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  padding: 0.3rem 0.5rem;
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* --- LISTS --- */
+#bankList .item,
+#historyList .item {
+  background: var(--panel);
+  border-radius: 6px;
+  padding: 0.6rem 0.8rem;
+  margin-bottom: 0.5rem;
+}
+.muted {
+  opacity: 0.75;
+  font-size: 0.9rem;
+}
+
+/* --- SETTINGS --- */
+#view-settings label {
+  display: block;
+  margin-bottom: 0.4rem;
+}
+#bookmarkList {
+  font-size: 0.85rem;
+  margin-top: 0.5rem;
+  background: var(--panel);
+  border-radius: 6px;
+  padding: 0.5rem;
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 600px) {
+  header { flex-direction: column; align-items: flex-start; gap: 0.3rem; }
+  #packControls { flex-direction: column; align-items: flex-start; }
+  .tabs { justify-content: center; }
+  #filterBar { flex-direction: column; align-items: flex-start; }
 }
