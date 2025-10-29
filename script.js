@@ -33,6 +33,13 @@ const state = {
   bookmarks: []
 };
 const $ = (id) => document.getElementById(id);
+// Safe binder — prevents crashes if an element is missing
+function onEl(id, evt, handler) {
+  const el = document.getElementById(id);
+  if (!el) { console.warn("Missing element:", id); return; }
+  el.addEventListener(evt, handler);
+}
+
 
 // ---- UTIL ----
 function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
@@ -131,6 +138,10 @@ async function init(){
   state.settings = load(STORAGE.settings, state.settings);
   state.history  = load(STORAGE.history,  []);
   state.bookmarks= load(STORAGE.bookmarks,[]);
+
+  // ✅ Apply dark or light theme right away
+  document.documentElement.classList.toggle("light", !state.settings.dark);
+
   if(state.settings.dark) document.documentElement.classList.remove("light"); else document.documentElement.classList.add("light");
 
   // Wire nav tabs (unchanged)
@@ -170,27 +181,34 @@ async function init(){
   state.order = [...Array(state.filtered.length).keys()];
   if(state.settings.shuffle) shuffle(state.order);
 
-  // Events (unchanged)
-  $("submitBtn").addEventListener("click", onSubmit);
-  $("revealBtn").addEventListener("click", onReveal);
-  $("nextBtn").addEventListener("click", nextQ);
-  $("bookmarkBtn").addEventListener("click", toggleBookmark);
-  $("resetBtn").addEventListener("click", resetSession);
-  $("reshuffleBtn").addEventListener("click", reshuffle);
-  $("filterDomain").addEventListener("change", applyFilters);
-  $("filterTags").addEventListener("input", debounce(applyFilters, 300));
-  $("exportBtn").addEventListener("click", exportCSV);
-  $("clearHistoryBtn").addEventListener("click", clearHistory);
-  $("resetSessionBtn").addEventListener("click", resetSession);
-  $("clearBookmarksBtn").addEventListener("click", clearBookmarks);
+// ---- EVENTS (safe bindings) ----
+onEl("submitBtn", "click", onSubmit);
+onEl("revealBtn", "click", onReveal);
+onEl("nextBtn", "click", nextQ);
+onEl("bookmarkBtn", "click", toggleBookmark);
 
-  // Settings toggles
-  $("optShuffle").addEventListener("change", e=>{ state.settings.shuffle=e.target.checked; persistSettings(); });
-  $("optPersist").addEventListener("change", e=>{ state.settings.persist=e.target.checked; persistSettings(); });
-  $("optDark").addEventListener("change", e=>{
-    state.settings.dark=e.target.checked; persistSettings();
-    document.documentElement.classList.toggle("light", !state.settings.dark);
-  });
+onEl("resetBtn", "click", resetSession);
+onEl("reshuffleBtn", "click", reshuffle);
+onEl("filterDomain", "change", applyFilters);
+(function(){
+  const ft = document.getElementById("filterTags");
+  if (ft) ft.addEventListener("input", debounce(applyFilters, 300));
+})();
+
+onEl("exportBtn", "click", exportCSV);
+onEl("clearHistoryBtn", "click", clearHistory);
+onEl("clearBookmarksBtn", "click", clearBookmarks);
+
+// Settings toggles (in Settings view)
+onEl("optShuffle", "change", e => { state.settings.shuffle = e.target.checked; persistSettings(); });
+onEl("optPersist", "change", e => { state.settings.persist = e.target.checked; persistSettings(); });
+onEl("optDarkSettings", "change", e => {
+  state.settings.dark = e.target.checked; persistSettings();
+  document.documentElement.classList.toggle("light", !state.settings.dark);
+});
+
+
+
 
   updateStats();
   renderQ();
@@ -466,6 +484,7 @@ function hydrateSettings(){
   $("optDark").checked    = !!state.settings.dark;
 }
 function persistSettings(){ save(STORAGE.settings, state.settings); }
+
 
 
 
