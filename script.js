@@ -4,9 +4,10 @@
 
 // ---- MULTI-PACK CONFIG ----
 const PACKS = {
-  set26: { file: "cbcn_26oct2025.json", label: "Oct 26, 2025" },
-  set27: { file: "cbcn_27oct2025.json", label: "Oct 27, 2025" },
+  "26oct2025": { file: "cbcn_26oct2025.json", label: "26oct2025" },
+  "27oct2025": { file: "cbcn_27oct2025.json", label: "27oct2025" }
 };
+
 
 const LS_ACTIVE = "cbcn_activePacks_v1"; // stores selected packs in localStorage
 
@@ -120,7 +121,11 @@ function updatePackSummary(active){
 }
 
 // ---- INIT ----
-init();
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", init);
+} else {
+  init();
+}
 async function init(){
   // Load settings/history/bookmarks
   state.settings = load(STORAGE.settings, state.settings);
@@ -228,6 +233,10 @@ function renderQ(){
 
   $("counter").textContent = `${state.idx+1} / ${state.order.length}`;
   $("stem").textContent = q.stem;
+  // Hide meta + tags on quiz view
+  $("meta").classList.add("hidden");
+  $("badges").classList.add("hidden");
+
 
   // meta line (domain + tags)
   const tags = (q.tags||[]).join(" • ");
@@ -457,6 +466,7 @@ function hydrateSettings(){
   $("optDark").checked    = !!state.settings.dark;
 }
 function persistSettings(){ save(STORAGE.settings, state.settings); }
+
 
 
 
