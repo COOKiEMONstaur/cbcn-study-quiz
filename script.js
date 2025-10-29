@@ -4,19 +4,18 @@
 
 // ---- MULTI-PACK CONFIG ----
 const PACKS = {
-  26oct2025:         { file: "./cbcn_26oct2025.json?v=1",        label: "26oct2025" },
-  27oct2025:       { file: "./cbcn_27oct2025.json?v=1",    label: "27oct2025" },
-  // add more packs here as you create them:
-  // diagnosis: { file: "cbcn_diagnosis.json", label: "Diagnosis & Staging" },
+  set26: { file: "cbcn_26oct2025.json", label: "Oct 26, 2025" },
+  set27: { file: "cbcn_27oct2025.json", label: "Oct 27, 2025" },
 };
-const LS_ACTIVE = "cbcn_activePacks_v1"; // stores selected pack ids
+
+const LS_ACTIVE = "cbcn_activePacks_v1"; // stores selected packs in localStorage
 
 // ---- STORAGE KEYS ----
 const STORAGE = {
-  settings:  "cbcn_settings_v1",
-  history:   "cbcn_history_v1",
-  session:   "cbcn_session_v1",
-  bookmarks: "cbcn_bookmarks_v1"
+  settings: "cbcn_settings_v1",
+  history: "cbcn_history_v1",
+  session: "cbcn_session_v1",
+  bookmarks: "cbcn_bookmarks_v1",
 };
 
 // ---- STATE ----
@@ -458,6 +457,7 @@ function hydrateSettings(){
   $("optDark").checked    = !!state.settings.dark;
 }
 function persistSettings(){ save(STORAGE.settings, state.settings); }
+
 
 
 
