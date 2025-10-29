@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>CBCN Study Quiz</title>
+  <!-- Your stylesheet (add ?v to beat cache) -->
+  <link rel="stylesheet" href="style.css?v=2" />
+</head>
+<body>
+  <header>
+    <h1>🩺 CBCN Study Quiz</h1>
+    <label class="sm"><input type="checkbox" id="optDarkHeader" checked /> Dark Mode</label>
+  </header>
+
+  <main>
+    <!-- status/debug line that script.js updates (you’ll see loading/errors here) -->
+    <div id="loadStatus" class="sm muted"></div>
+
+    <!-- Pack selector gets injected by script.js -->
+    <div id="packControls"></div>
+
+    <div class="tabs">
+      <button class="active" data-view="quiz">Quiz</button>
+      <button data-view="bank">Question Bank</button>
+      <button data-view="history">History</button>
+      <button data-view="settings">Settings</button>
+    </div>
+
+    <!-- QUIZ VIEW -->
+    <div id="view-quiz" class="view active">
+      <div id="filterBar">
+        <label>Domain:
+          <select id="filterDomain"><option>All</option></select>
+        </label>
+        <label>Tags:
+          <input id="filterTags" type="text" placeholder="Comma-separated tags…" />
+        </label>
+        <button id="reshuffleBtn" type="button">Shuffle</button>
+        <button id="resetBtn" type="button">Reset Session</button>
+      </div>
+
+      <div id="meta" class="muted sm"></div>
+      <div id="badges"></div>
+
+      <h2 id="stem"></h2>
+      <div id="choices"></div>
+
+      <div class="stats">
+        <span>✅ <b id="statCorrect">0</b></span>
+        <span>❌ <b id="statIncorrect">0</b></span>
+        <span>🔥 <b id="statStreak">0</b></span>
+        <span>📚 <b id="statBank">0</b></span>
+        <span>🔢 <b id="counter"></b></span>
+      </div>
+
+      <div class="actions">
+        <button id="submitBtn" type="button">Submit</button>
+        <button id="revealBtn" type="button">Reveal</button>
+        <button id="nextBtn" type="button" class="hidden">Next</button>
+        <button id="bookmarkBtn" type="button" class="ghost">★ Bookmark</button>
+      </div>
+
+      <div id="feedback" class="hidden">
+        <div id="resultBadge" class="badge"></div>
+        <p id="rationale"></p>
+        <ul id="whyWrong"></ul>
+      </div>
+    </div>
+
+    <!-- BANK VIEW -->
+    <div id="view-bank" class="view">
+      <h2>All Questions</h2>
+      <div id="bankList"></div>
+    </div>
+
+    <!-- HISTORY VIEW -->
+    <div id="view-history" class="view">
+      <h2>Answer History</h2>
+      <p id="historyEmpty" class="muted">No answers saved yet.</p>
+      <div id="historyList"></div>
+      <div class="row">
+        <button id="exportBtn" type="button">Export CSV</button>
+        <button id="clearHistoryBtn" type="button" class="ghost">Clear History</button>
+      </div>
+    </div>
+
+    <!-- SETTINGS VIEW -->
+    <div id="view-settings" class="view">
+      <h2>Settings</h2>
+      <label><input type="checkbox" id="optShuffle" checked> Shuffle Questions</label><br />
+      <label><input type="checkbox" id="optPersist" checked> Save Answer History</label><br />
+      <label><input type="checkbox" id="optDarkSettings" checked> Dark Mode</label><br /><br />
+      <button id="clearBookmarksBtn" type="button" class="ghost">Clear Bookmarks</button>
+      <h3>Bookmarked Questions</h3>
+      <div id="bookmarkList" class="muted sm"></div>
+    </div>
+  </main>
+
+  <noscript>This site requires JavaScript to run.</noscript>
+  <!-- Load logic last; add ?v to break cache -->
+  <script src="script.js?v=3"></script>
+</body>
+</html>
