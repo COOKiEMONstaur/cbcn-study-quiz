@@ -41,11 +41,29 @@ function onEl(id, evt, handler) {
 }
 
 
-// ---- UTIL ----
+// ---- UTIL HELPERS ----
 function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
 function save(k,v){localStorage.setItem(k, JSON.stringify(v))}
 function load(k, fallback){ try{ return JSON.parse(localStorage.getItem(k)) ?? fallback } catch { return fallback } }
 function debounce(fn, ms){ let t; return (...a)=>{ clearTimeout(t); t=setTimeout(()=>fn(...a),ms); }; }
+
+// ---- SHOW DETAILS (domain + tags after answering) ----
+function showDetails(q){
+  const tags = q.tags || [];
+  $("meta").textContent = [q.domain, tags.join(" • ")].filter(Boolean).join(" — ");
+  $("meta").classList.remove("hidden");
+
+  const badges = $("badges");
+  badges.innerHTML = "";
+  tags.forEach(t => {
+    const span = document.createElement("span");
+    span.className = "tag";
+    span.textContent = t;
+    badges.appendChild(span);
+  });
+  if (tags.length) $("badges").classList.remove("hidden");
+}
+
 
 // ---- PACK SELECTION (all ON by default) ----
 function defaultActivePacks(){ return Object.keys(PACKS); }
@@ -247,44 +265,49 @@ function rebuildFromActive(){
 // ---- RENDER QUESTION ----
 function renderQ(){
   const q = getCurrent();
-  if(!q){ $("stem").textContent = "No questions match the current filters."; $("choices").innerHTML=""; return; }
 
-  $("counter").textContent = `${state.idx+1} / ${state.order.length}`;
-  $("stem").textContent = q.stem;
-  // Hide meta + tags on quiz view
-  $("meta").classList.add("hidden");
-  $("badges").classList.add("hidden");
-
-
-  // meta line (domain + tags)
-  const tags = (q.tags||[]).join(" • ");
-  $("meta").textContent = [q.domain, tags].filter(Boolean).join(" — ");
-
-  // topic badges
-  const badges = $("badges"); if (badges) {
-    badges.innerHTML = "";
-    (q.tags||[]).slice(0,4).forEach(t=>{
-      const span = document.createElement("span");
-      span.className="tag"; span.textContent = t; badges.appendChild(span);
-    });
+  // No question matched (filters or empty packs)
+  if (!q) {
+    $("stem").textContent = "No questions match the current filters.";
+    $("choices").innerHTML = "";
+    $("meta").classList.add("hidden");
+    $("badges").classList.add("hidden");
+    $("meta").textContent = "";
+    $("badges").innerHTML = "";
+    $("feedback").classList.add("hidden");
+    $("submitBtn").classList.add("hidden");
+    $("nextBtn").classList.add("hidden");
+    return;
   }
 
+  // Counter + stem
+  $("counter").textContent = `${state.idx + 1} / ${state.order.length}`;
+  $("stem").textContent = q.stem;
+
+  // Hide/clear details until user submits/reveals
+  $("meta").classList.add("hidden");
+  $("badges").classList.add("hidden");
+  $("meta").textContent = "";
+  $("badges").innerHTML = "";
+
+  // Render choices
   const choices = $("choices");
   choices.innerHTML = "";
-  q.choices.forEach((c,i)=>{
+  (q.choices || []).forEach((c, i) => {
     const label = document.createElement("label");
     label.innerHTML = `<input type="radio" name="choice" value="${i}"> ${c}`;
     choices.appendChild(label);
   });
 
-  // reset panels/buttons
+  // Reset panels/buttons
   $("feedback").classList.add("hidden");
   $("nextBtn").classList.add("hidden");
   $("submitBtn").classList.remove("hidden");
 
-  // set bookmark button state
+  // Bookmark button state
   $("bookmarkBtn").textContent = isBookmarked(q) ? "★ Bookmarked" : "★ Bookmark";
 }
+
 
 // ---- ACTIONS ----
 function getCurrent(){ return state.filtered[state.order[state.idx]]; }
@@ -326,6 +349,7 @@ function onReveal(){
   $("resultBadge").className = "badge";
   $("resultBadge").textContent = `Answer: ${String.fromCharCode(65 + q.answerIndex)}`;
   $("rationale").textContent = q.rationale || "—";
+  showDetails(q);
   renderWhyWrong(q);
 }
 
@@ -334,6 +358,7 @@ function showFeedback(ok, q){
   $("resultBadge").className = "badge " + (ok ? "ok":"no");
   $("resultBadge").textContent = ok ? "Correct" : `Incorrect — Correct: ${String.fromCharCode(65+q.answerIndex)}`;
   $("rationale").textContent = q.rationale || "—";
+  showDetails(q);
   renderWhyWrong(q);
   $("submitBtn").classList.add("hidden");
   $("nextBtn").classList.remove("hidden");
@@ -484,6 +509,7 @@ function hydrateSettings(){
   $("optDark").checked    = !!state.settings.dark;
 }
 function persistSettings(){ save(STORAGE.settings, state.settings); }
+
 
 
 
