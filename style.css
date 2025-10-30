@@ -243,3 +243,13 @@ button.hidden {
   .tabs { justify-content: center; }
   #filterBar { flex-direction: column; align-items: flex-start; }
 }
+
+/* --- Domain & tags styling after rationale --- */
+#meta {
+  padding-top: 6px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+html.light #meta {
+  border-top-color: rgba(0, 0, 0, 0.08);
+}
