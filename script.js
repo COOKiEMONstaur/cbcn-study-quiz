@@ -50,9 +50,14 @@ function debounce(fn, ms){ let t; return (...a)=>{ clearTimeout(t); t=setTimeout
 // ---- SHOW DETAILS (domain + tags after answering) ----
 function showDetails(q){
   const tags = q.tags || [];
-  $("meta").textContent = [q.domain, tags.join(" • ")].filter(Boolean).join(" — ");
-  $("meta").classList.remove("hidden");
+  const hasDomain = !!q.domain;
+  const hasTags = tags.length > 0;
 
+  // Domain line (no inline tags here)
+  $("meta").textContent = hasDomain ? q.domain : "";
+  $("meta").classList.toggle("hidden", !hasDomain && !hasTags);
+
+  // Tag chips
   const badges = $("badges");
   badges.innerHTML = "";
   tags.forEach(t => {
@@ -61,7 +66,7 @@ function showDetails(q){
     span.textContent = t;
     badges.appendChild(span);
   });
-  if (tags.length) $("badges").classList.remove("hidden");
+  badges.classList.toggle("hidden", !hasTags);
 }
 
 
@@ -266,7 +271,6 @@ function rebuildFromActive(){
 function renderQ(){
   const q = getCurrent();
 
-  // No question matched (filters or empty packs)
   if (!q) {
     $("stem").textContent = "No questions match the current filters.";
     $("choices").innerHTML = "";
@@ -280,7 +284,6 @@ function renderQ(){
     return;
   }
 
-  // Counter + stem
   $("counter").textContent = `${state.idx + 1} / ${state.order.length}`;
   $("stem").textContent = q.stem;
 
@@ -290,7 +293,6 @@ function renderQ(){
   $("meta").textContent = "";
   $("badges").innerHTML = "";
 
-  // Render choices
   const choices = $("choices");
   choices.innerHTML = "";
   (q.choices || []).forEach((c, i) => {
@@ -299,14 +301,12 @@ function renderQ(){
     choices.appendChild(label);
   });
 
-  // Reset panels/buttons
   $("feedback").classList.add("hidden");
   $("nextBtn").classList.add("hidden");
   $("submitBtn").classList.remove("hidden");
-
-  // Bookmark button state
   $("bookmarkBtn").textContent = isBookmarked(q) ? "★ Bookmarked" : "★ Bookmark";
 }
+
 
 
 // ---- ACTIONS ----
@@ -349,8 +349,9 @@ function onReveal(){
   $("resultBadge").className = "badge";
   $("resultBadge").textContent = `Answer: ${String.fromCharCode(65 + q.answerIndex)}`;
   $("rationale").textContent = q.rationale || "—";
-  showDetails(q);
   renderWhyWrong(q);
+  // show domain + tags here
+  showDetails(q);
 }
 
 function showFeedback(ok, q){
@@ -358,8 +359,9 @@ function showFeedback(ok, q){
   $("resultBadge").className = "badge " + (ok ? "ok":"no");
   $("resultBadge").textContent = ok ? "Correct" : `Incorrect — Correct: ${String.fromCharCode(65+q.answerIndex)}`;
   $("rationale").textContent = q.rationale || "—";
-  showDetails(q);
   renderWhyWrong(q);
+  // show domain + tags here
+  showDetails(q);
   $("submitBtn").classList.add("hidden");
   $("nextBtn").classList.remove("hidden");
 }
@@ -509,6 +511,7 @@ function hydrateSettings(){
   $("optDark").checked    = !!state.settings.dark;
 }
 function persistSettings(){ save(STORAGE.settings, state.settings); }
+
 
 
 
