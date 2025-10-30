@@ -47,6 +47,7 @@ function save(k,v){localStorage.setItem(k, JSON.stringify(v))}
 function load(k, fallback){ try{ return JSON.parse(localStorage.getItem(k)) ?? fallback } catch { return fallback } }
 function debounce(fn, ms){ let t; return (...a)=>{ clearTimeout(t); t=setTimeout(()=>fn(...a),ms); }; }
 
+
 // ---- SHOW DETAILS (domain + tags after answering) ----
 function showDetails(q){
   const tags = q.tags || [];
@@ -224,12 +225,20 @@ onEl("clearHistoryBtn", "click", clearHistory);
 onEl("clearBookmarksBtn", "click", clearBookmarks);
 
 // Settings toggles (in Settings view)
-onEl("optShuffle", "change", e => { state.settings.shuffle = e.target.checked; persistSettings(); });
-onEl("optPersist", "change", e => { state.settings.persist = e.target.checked; persistSettings(); });
+onEl("optShuffle", "change", e => {
+  state.settings.shuffle = e.target.checked;
+  persistSettings();
+});
+onEl("optPersist", "change", e => {
+  state.settings.persist = e.target.checked;
+  persistSettings();
+});
 onEl("optDarkSettings", "change", e => {
-  state.settings.dark = e.target.checked; persistSettings();
+  state.settings.dark = e.target.checked;
+  persistSettings();
   document.documentElement.classList.toggle("light", !state.settings.dark);
 });
+
 
 
 
@@ -510,11 +519,17 @@ function clearHistory(){
 
 // ---- SETTINGS ----
 function hydrateSettings(){
-  $("optShuffle").checked = !!state.settings.shuffle;
-  $("optPersist").checked = !!state.settings.persist;
-  $("optDark").checked    = !!state.settings.dark;
+  const sh = document.getElementById("optShuffle");
+  const pe = document.getElementById("optPersist");
+  const dk = document.getElementById("optDarkSettings");
+
+  if (sh) sh.checked = !!state.settings.shuffle;
+  if (pe) pe.checked = !!state.settings.persist;
+  if (dk) dk.checked = !!state.settings.dark;
 }
+
 function persistSettings(){ save(STORAGE.settings, state.settings); }
+
 
 
 
