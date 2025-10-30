@@ -53,7 +53,7 @@ function showDetails(q){
   const hasDomain = !!q.domain;
   const hasTags = tags.length > 0;
 
-  // Domain line (no inline tags here)
+  // Domain line only (no inline tag list here)
   $("meta").textContent = hasDomain ? q.domain : "";
   $("meta").classList.toggle("hidden", !hasDomain && !hasTags);
 
@@ -68,6 +68,7 @@ function showDetails(q){
   });
   badges.classList.toggle("hidden", !hasTags);
 }
+
 
 
 // ---- PACK SELECTION (all ON by default) ----
@@ -343,6 +344,20 @@ function onSubmit(){
   updateStats();
 }
 
+function showFeedback(ok, q){
+  $("feedback").classList.remove("hidden");
+  $("resultBadge").className = "badge " + (ok ? "ok":"no");
+  $("resultBadge").textContent = ok ? "Correct" : `Incorrect — Correct: ${String.fromCharCode(65+q.answerIndex)}`;
+  $("rationale").textContent = q.rationale || "—";
+  renderWhyWrong(q);
+
+  // 👇 now domain + chips render after the rationale + whyWrong
+  showDetails(q);
+
+  $("submitBtn").classList.add("hidden");
+  $("nextBtn").classList.remove("hidden");
+}
+
 function onReveal(){
   const q = getCurrent();
   $("feedback").classList.remove("hidden");
@@ -350,20 +365,9 @@ function onReveal(){
   $("resultBadge").textContent = `Answer: ${String.fromCharCode(65 + q.answerIndex)}`;
   $("rationale").textContent = q.rationale || "—";
   renderWhyWrong(q);
-  // show domain + tags here
-  showDetails(q);
-}
 
-function showFeedback(ok, q){
-  $("feedback").classList.remove("hidden");
-  $("resultBadge").className = "badge " + (ok ? "ok":"no");
-  $("resultBadge").textContent = ok ? "Correct" : `Incorrect — Correct: ${String.fromCharCode(65+q.answerIndex)}`;
-  $("rationale").textContent = q.rationale || "—";
-  renderWhyWrong(q);
-  // show domain + tags here
+  // 👇 same here
   showDetails(q);
-  $("submitBtn").classList.add("hidden");
-  $("nextBtn").classList.remove("hidden");
 }
 
 function renderWhyWrong(q){
@@ -511,6 +515,7 @@ function hydrateSettings(){
   $("optDark").checked    = !!state.settings.dark;
 }
 function persistSettings(){ save(STORAGE.settings, state.settings); }
+
 
 
 
