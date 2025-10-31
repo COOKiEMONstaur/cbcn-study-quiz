@@ -1,167 +1,153 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>CBCN Study Quiz</title>
-<link rel="stylesheet" href="style.css" />
-
-<style>
-  /* fallback minimal styles if style.css is missing */
-  :root {
-    --bg:#0f1013; --fg:#e9ebf0; --muted:#a9afbf;
-    --card:#171922; --accent:#9c86ff;
-  }
-  html.light { --bg:#ffffff; --fg:#121418; --muted:#5a6273; --card:#f5f6fb; }
-
-  body {
-    margin:0; background:var(--bg); color:var(--fg);
-    font:16px/1.45 system-ui,Segoe UI,Roboto,Helvetica,Arial;
-  }
-  .wrap { max-width:900px; margin:0 auto; padding:16px; }
-  header { display:flex; align-items:center; gap:12px; margin-bottom:12px; }
-  .title { font-weight:700; font-size:1.2rem; }
-
-  .tabs { display:flex; gap:8px; margin:12px 0; flex-wrap:wrap; }
-  .tabs button {
-    background:var(--card); color:var(--fg);
-    border:1px solid #2a2f3f; border-radius:10px;
-    padding:8px 12px; cursor:pointer;
-  }
-  .tabs button.active { background:var(--accent); color:#fff; }
-
-  .view { display:none; }
-  .view.active { display:block; }
-
-  .row { display:flex; flex-wrap:wrap; gap:8px; align-items:center; margin:10px 0; }
-  select,input[type=text] {
-    background:var(--card); color:var(--fg);
-    border:1px solid #2a2f3f; border-radius:8px; padding:6px 8px;
-  }
-  .btn { background:#8f7bff; color:#fff; border:0; border-radius:10px; padding:8px 12px; cursor:pointer; }
-  .btn.ghost { background:var(--card); color:var(--fg); border:1px solid #2a2f3f; }
-
-  .card { background:var(--card); border:1px solid #2a2f3f; border-radius:14px; padding:14px; margin:12px 0; }
-  .stem { font-weight:700; margin:10px 0; }
-
-  .choices label {
-    display:block; background:#1e2230; border:1px solid #2a2f3f;
-    padding:10px; border-radius:10px; margin:8px 0; cursor:pointer;
-  }
-  html.light .choices label { background:#fff; }
-
-  .muted { color:var(--muted); }
-  .stats { display:flex; gap:14px; font-size:14px; margin:8px 0; flex-wrap:wrap; }
-  .badge { display:inline-block; border-radius:8px; padding:3px 8px; font-size:12px; }
-  .badge.ok { background:#1b7a43; color:#fff; }
-  .badge.no { background:#7a1b2c; color:#fff; }
-  .hidden { display:none; }
-  .tag { display:inline-block; background:#2a2f3f; color:#cbd1e4; border-radius:8px; padding:2px 8px; margin-right:6px; }
-
-  /* domain/tags section after rationale */
-  #meta {
-    padding-top:6px;
-    border-top:1px solid rgba(255,255,255,0.08);
-  }
-  html.light #meta { border-top-color:rgba(0,0,0,0.08); }
-</style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CBCN Study Quiz</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* minimal fallback styling in case style.css is cached/missing */
+    :root{--bg:#0f1013;--fg:#e9ebf0;--muted:#a9afbf;--card:#171922;--accent:#9c86ff}
+    html.light{--bg:#ffffff;--fg:#121418;--muted:#5a6273;--card:#f5f6fb}
+    body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.45 system-ui,Segoe UI,Roboto,Helvetica,Arial}
+    .wrap{max-width:980px;margin:0 auto;padding:16px}
+    header{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+    .title{font-weight:700}
+    .tabs{display:flex;gap:8px;margin:12px 0}
+    .tabs button{background:var(--card);color:var(--fg);border:1px solid #2a2f3f;border-radius:10px;padding:8px 12px;cursor:pointer}
+    .tabs button.active{background:var(--accent);color:#fff}
+    .view{display:none}
+    .view.active{display:block}
+    .row{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:10px 0}
+    select,input[type=text]{background:var(--card);color:var(--fg);border:1px solid #2a2f3f;border-radius:8px;padding:6px 8px}
+    .btn{background:#8f7bff;color:#fff;border:0;border-radius:10px;padding:8px 12px;cursor:pointer}
+    .btn.ghost{background:var(--card);color:var(--fg);border:1px solid #2a2f3f}
+    .card{background:var(--card);border:1px solid #2a2f3f;border-radius:14px;padding:14px;margin:12px 0}
+    .stem{font-weight:700;margin:10px 0}
+    .choices label{display:block;background:#1e2230;border:1px solid #2a2f3f;padding:10px;border-radius:10px;margin:8px 0;cursor:pointer}
+    html.light .choices label{background:#fff}
+    .muted{color:var(--muted)}
+    .sm{font-size:12px}
+    .stats{display:flex;gap:14px;font-size:14px;margin:8px 0}
+    .badge{display:inline-block;border-radius:8px;padding:3px 8px;font-size:12px}
+    .badge.ok{background:#1b7a43;color:#fff}
+    .badge.no{background:#7a1b2c;color:#fff}
+    .hidden{display:none}
+    .tag{display:inline-block;background:#2a2f3f;color:#cbd1e4;border-radius:8px;padding:2px 8px;margin-right:6px}
+  </style>
 </head>
-
 <body>
-<div class="wrap">
-  <header>
-    <div class="title">🩺 CBCN Study Quiz</div>
-  </header>
+  <div class="wrap">
+    <header>
+      <div class="title">🩺 CBCN Study Quiz</div>
+    </header>
 
-  <div id="loadStatus" class="muted" style="min-height:18px"></div>
+    <div id="loadStatus" class="muted" style="min-height:18px"></div>
 
-  <!-- Tabs -->
-  <div class="tabs">
-    <button class="active" data-view="quiz">Quiz</button>
-    <button data-view="bank">Question Bank</button>
-    <button data-view="history">History</button>
-    <button data-view="settings">Settings</button>
-  </div>
-
-  <!-- QUIZ VIEW -->
-  <section id="view-quiz" class="view active">
-    <div class="row">
-      <label>Domain:
-        <select id="filterDomain"><option>All</option></select>
-      </label>
-      <input id="filterTags" type="text" placeholder="Comma-separated tags…" />
-      <button id="reshuffleBtn" class="btn ghost">Shuffle</button>
-      <button id="resetBtn" class="btn ghost">Reset Session</button>
-      <div id="counter" class="muted" style="margin-left:auto">0 / 0</div>
+    <div class="tabs">
+      <button class="active" data-view="quiz">Quiz</button>
+      <button data-view="bank">Question Bank</button>
+      <button data-view="history">History</button>
+      <button data-view="settings">Settings</button>
     </div>
 
-    <div id="stem" class="stem">Loading questions…</div>
-    <div id="choices" class="choices"></div>
-
-    <div class="stats">
-      <div>Correct: <b id="statCorrect">0</b></div>
-      <div>Incorrect: <b id="statIncorrect">0</b></div>
-      <div>Streak: <b id="statStreak">0</b></div>
-      <div>In bank: <b id="statBank">0</b></div>
-    </div>
-
-    <div class="row">
-      <button id="submitBtn" class="btn">Submit</button>
-      <button id="revealBtn" class="btn ghost">Reveal</button>
-      <button id="nextBtn" class="btn hidden">Next</button>
-      <button id="bookmarkBtn" class="btn ghost" style="margin-left:auto">★ Bookmark</button>
-    </div>
-
-    <!-- Feedback -->
-    <div id="feedback" class="card hidden">
-      <div id="resultBadge" class="badge">Answer</div>
-      <div id="rationale" style="margin:10px 0"></div>
-      <ul id="whyWrong" class="muted" style="margin:6px 0 0 18px"></ul>
-      <div id="meta" class="muted hidden" style="margin-top:12px"></div>
-      <div id="badges" class="hidden" style="margin-top:6px"></div>
-    </div>
-  </section>
-
-  <!-- QUESTION BANK -->
-  <section id="view-bank" class="view">
-    <h3>All Questions</h3>
-    <div id="bankList"></div>
-  </section>
-
-  <!-- HISTORY -->
-  <section id="view-history" class="view">
-    <div id="historyEmpty" class="muted">No saved answers yet.</div>
-    <div class="row">
-      <button id="exportBtn" class="btn ghost">Export History (CSV)</button>
-      <button id="clearHistoryBtn" class="btn ghost">Clear History</button>
-    </div>
-    <div id="historyList"></div>
-  </section>
-
-  <!-- SETTINGS -->
-  <section id="view-settings" class="view">
-    <div class="card">
-      <h3>Question Packs</h3>
-      <div id="packControls" class="row"></div>
-      <div class="muted" style="margin-top:6px">Tip: press “Apply” after changing packs.</div>
-    </div>
-
-    <div class="card">
-      <h3>Preferences</h3>
-      <label><input id="optShuffle" type="checkbox" checked /> Shuffle questions</label><br/>
-      <label><input id="optPersist" type="checkbox" checked /> Save answer history</label><br/>
-      <label><input id="optDarkSettings" type="checkbox" checked /> Dark Mode</label><br/>
-
-      <div class="row" style="margin-top:10px">
-        <button id="clearBookmarksBtn" class="btn ghost">Clear Bookmarks</button>
+    <!-- QUIZ VIEW -->
+    <section id="view-quiz" class="view active">
+      <div class="row">
+        <label>Domain:
+          <select id="filterDomain">
+            <option>All</option>
+          </select>
+        </label>
+        <input id="filterTags" type="text" placeholder="Comma-separated tags…" />
+        <button id="reshuffleBtn" class="btn ghost">Shuffle</button>
+        <button id="resetBtn" class="btn ghost">Reset Session</button>
+        <label style="margin-left:auto">
+          <input id="filterBookmarkedQuiz" type="checkbox" />
+          Bookmarked only
+        </label>
+        <div id="counter" class="muted">0 / 0</div>
       </div>
 
-      <h4>Bookmarked Questions</h4>
-      <div id="bookmarkList" class="muted sm">None yet.</div>
-    </div>
-  </section>
-</div>
+      <div id="stem" class="stem">Loading questions…</div>
+      <div id="choices" class="choices"></div>
 
-<script src="script.js?v=9"></script>
+      <div class="stats">
+        <div>Correct: <b id="statCorrect">0</b></div>
+        <div>Incorrect: <b id="statIncorrect">0</b></div>
+        <div>Streak: <b id="statStreak">0</b></div>
+        <div>In bank: <b id="statBank">0</b></div>
+      </div>
+
+      <div class="row">
+        <button id="submitBtn" class="btn">Submit</button>
+        <button id="revealBtn" class="btn ghost">Reveal</button>
+        <button id="nextBtn" class="btn hidden">Next</button>
+        <button id="bookmarkBtn" class="btn ghost" style="margin-left:auto">★ Bookmark</button>
+      </div>
+
+      <!-- FEEDBACK (shows after Submit/Reveal) -->
+      <div id="feedback" class="card hidden">
+        <div id="resultBadge" class="badge">Answer</div>
+
+        <!-- Rationale text -->
+        <div id="rationale" style="margin:10px 0"></div>
+
+        <!-- Why the other choices are wrong -->
+        <ul id="whyWrong" class="muted" style="margin:6px 0 0 18px"></ul>
+
+        <!-- Domain + tags (shown only after Submit/Reveal) -->
+        <div id="meta" class="muted hidden" style="margin-top:12px"></div>
+        <div id="badges" class="hidden" style="margin-top:6px"></div>
+      </div>
+    </section>
+
+    <!-- QUESTION BANK VIEW -->
+    <section id="view-bank" class="view">
+      <div class="row">
+        <label>
+          <input id="filterBookmarkedBank" type="checkbox" />
+          Bookmarked only
+        </label>
+      </div>
+      <h3>All Questions</h3>
+      <div id="bankList"></div>
+    </section>
+
+    <!-- HISTORY VIEW -->
+    <section id="view-history" class="view">
+      <div id="historyEmpty" class="muted">No saved answers yet.</div>
+      <div class="row">
+        <button id="exportBtn" class="btn ghost">Export History (CSV)</button>
+        <button id="clearHistoryBtn" class="btn ghost">Clear History</button>
+      </div>
+      <div id="historyList"></div>
+    </section>
+
+    <!-- SETTINGS VIEW -->
+    <section id="view-settings" class="view">
+      <div class="card">
+        <h3>Question Packs</h3>
+        <div id="packControls" class="row"></div>
+        <button id="applyPacksBtn" class="btn">Apply</button>
+        <div class="muted sm" style="margin-top:6px">Tip: check the packs you want and click Apply.</div>
+      </div>
+
+      <div class="card">
+        <h3>Preferences</h3>
+        <label><input id="optShuffle" type="checkbox" checked /> Shuffle questions</label><br/>
+        <label><input id="optPersist" type="checkbox" checked /> Save answer history</label><br/>
+        <label><input id="optDarkSettings" type="checkbox" checked /> Dark Mode</label><br/>
+        <div class="row" style="margin-top:10px">
+          <button id="clearBookmarksBtn" class="btn ghost">Clear Bookmarks</button>
+        </div>
+        <h4>Bookmarked Questions</h4>
+        <div id="bookmarkList" class="muted sm">None yet.</div>
+      </div>
+    </section>
+  </div>
+
+  <!-- bump the version query to bust caches when you update script.js -->
+  <script src="script.js?v=7"></script>
 </body>
 </html>
